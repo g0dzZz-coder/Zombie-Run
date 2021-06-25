@@ -4,19 +4,10 @@ using UnityEngine;
 
 namespace ZombieRun.Levels
 {
-    using Utils;
-
-    public class LevelSystem : MonoSingleton<LevelSystem>
+    [CreateAssetMenu(fileName = "LevelGroup", menuName = "Settings/LevelGroup", order = 51)]
+    public class LevelGroup : ScriptableObject
     {
-        [SerializeField] private Transform _root = null;
         [SerializeField] private List<LevelData> _levels = new List<LevelData>();
-
-        public void LoadNextLevel(LevelData data)
-        {
-            var nextLevel = GetNextLevel();
-
-            var level = Instantiate(nextLevel.prefab, _root.transform);
-        }
 
         public LevelData GetNextLevel()
         {

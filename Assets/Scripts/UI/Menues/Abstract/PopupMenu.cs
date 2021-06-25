@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ZombieRun.UI
 {
-    public class PopupMenu : MonoBehaviour
+    public abstract class PopupMenu : MonoBehaviour
     {
         [SerializeField] private CanvasGroup _root = null;
         [Range(0f, 2f)]

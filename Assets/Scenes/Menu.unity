@@ -1788,7 +1788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e02c78b00aa8194e927bef464dc301b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleText: {fileID: 2000271873}
+  _levelGroup: {fileID: 11400000, guid: 08a3032249f908d458554e1214197df6, type: 2}
+  _levelNameText: {fileID: 2000271873}
   _animationDuration: 0.5
 --- !u!225 &874370586
 CanvasGroup:
