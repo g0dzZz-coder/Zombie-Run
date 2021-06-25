@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SampleLevel
   m_EditorClassIdentifier: 
   id: Sample
-  prefab: {fileID: 0}
+  prefab: {fileID: 2050328413995136879, guid: e94c7cfb6ea4c1841a8370c66b96c71f, type: 3}

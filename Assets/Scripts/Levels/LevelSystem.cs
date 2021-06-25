@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,26 +8,39 @@ namespace ZombieRun.Levels
 
     public class LevelSystem : MonoSingleton<LevelSystem>
     {
-        [SerializeField] private List<LevelData> levels = new List<LevelData>();
+        [SerializeField] private Transform _root = null;
+        [SerializeField] private List<LevelData> _levels = new List<LevelData>();
 
-        public void LoadLevel(LevelData data)
+        public void LoadNextLevel(LevelData data)
         {
-            
+            var nextLevel = GetNextLevel();
+
+            var level = Instantiate(nextLevel.prefab, _root.transform);
         }
 
-        public LevelData GetLastPlayedLevel()
+        public LevelData GetNextLevel()
         {
             if (PlayerPrefs.HasKey("lastLevel"))
-                return null;
+                return GetFirstLevel();
 
-            var level = levels.SingleOrDefault(x => x.id == PlayerPrefs.GetString("lastLevel"));
+            var lastLevelId = PlayerPrefs.GetString("lastLevel");
+            var lastLevel = _levels.SingleOrDefault(x => x.id == lastLevelId);
+            var nextLevelId = _levels.IndexOf(lastLevel) + 1;
 
-            return level;
+            if (nextLevelId > _levels.Count - 1 || _levels[nextLevelId] == null)
+                return GetFirstLevel();
+
+            return _levels[nextLevelId];
         }
 
         public void SetLastLevelPlayed(LevelData level)
         {
             PlayerPrefs.SetString("lastLevel", level.id);
+        }
+
+        private LevelData GetFirstLevel()
+        {
+            return _levels.FirstOrDefault();
         }
     }
 }

@@ -20,19 +20,20 @@ namespace ZombieRun.UI
 
         private void Start()
         {
-            OnLevelUpdated(LevelSystem.Instance.GetLastPlayedLevel());
+            OnLevelUpdated(LevelSystem.Instance.GetNextLevel());
         }
 
         public void OnLevelUpdated(LevelData data)
         {
-            if (data == null)
+            if (data)
             {
-                _canvasGroup.alpha = 0f;
+                titleText.text = data.id;
+                LeanTween.alphaCanvas(_canvasGroup, 1f, _animationDuration);
+
                 return;
             }
 
-            titleText.text = data.id;
-            LeanTween.alphaCanvas(_canvasGroup, 1f, _animationDuration);
+            _canvasGroup.alpha = 0f;
         }
     }
 }

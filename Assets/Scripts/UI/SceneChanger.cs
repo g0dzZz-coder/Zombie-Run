@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 namespace ZombieRun.UI
 {
     using Utils;
+    using Core;
 
     public class SceneChanger : MonoSingleton<SceneChanger>
     {
@@ -24,7 +25,9 @@ namespace ZombieRun.UI
             if (newScene == SceneManager.GetActiveScene().name || string.IsNullOrWhiteSpace(newScene))
                 return;
 
+            _lastScene = SceneManager.GetActiveScene().name;
             _sceneToLoad = newScene;
+
             PlayFadeOutAnimation();
         }
 
@@ -36,7 +39,7 @@ namespace ZombieRun.UI
 
         public void OnFadeComplete()
         {
-            SceneManager.LoadSceneAsync(_sceneToLoad).completed += OnSceneLoaded;
+            SceneManager.LoadSceneAsync(_sceneToLoad, LoadSceneMode.Additive).completed += OnSceneLoaded;
         }
 
         private void PlayFadeInAnimation()
@@ -58,7 +61,12 @@ namespace ZombieRun.UI
 
         private void OnSceneLoaded(AsyncOperation operation)
         {
+            if (_lastScene != PreLoader.PreloadSceneName)
+                SceneManager.UnloadSceneAsync(_lastScene);
+
             _lastScene = _sceneToLoad;
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(_lastScene));
+
             PlayFadeInAnimation();
         }
 

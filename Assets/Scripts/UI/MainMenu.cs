@@ -5,6 +5,8 @@ namespace ZombieRun.UI
 {
     public class MainMenu : MonoBehaviour
     {
+        [Scene]
+        [SerializeField] private string gameScene = string.Empty;
         [SerializeField] private Button startButton = null;
 
         private void OnEnable()
@@ -21,7 +23,7 @@ namespace ZombieRun.UI
 
         public void OnStartButtonPressed()
         {
-            Debug.Log("Start");
+            SceneChanger.Instance.FadeToScene(gameScene);
         }
     }
 }

@@ -59,15 +59,8 @@ namespace ZombieRun.Utils
 
         protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (instancesInScene < 2)
-            {
+            if (Instance != this)
                 DisposeInternal();
-            }
-            else
-            {
-                if (Instance != this)
-                    DisposeInternal();
-            }
         }
 
         protected virtual bool Init(T instance)
