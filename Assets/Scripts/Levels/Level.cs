@@ -9,8 +9,8 @@ namespace ZombieRun.Levels
     public class Level : MonoBehaviour
     {
         [SerializeField] private Player _playerPrefab = null;
-        [SerializeField] private Transform _startZone = null;
-        [SerializeField] private BoxCollider _finishZone = null;
+        [SerializeField] private StartZone _startZone = null;
+        [SerializeField] private FinishZone _finishZone = null;
 
         public LevelData Data { get; private set; }
         public Player Player { get; private set; }
@@ -18,7 +18,9 @@ namespace ZombieRun.Levels
         public void Init(LevelData data)
         {
             Data = data;
-            Player = CreatePlayer();
+
+            Player = _startZone.CreatePlayer(_playerPrefab);
+            _finishZone.Init();
         }
 
         public void Restart()
@@ -29,17 +31,6 @@ namespace ZombieRun.Levels
         public Vector3 GetFinishPosition()
         {
             return _finishZone.transform.position;
-        }
-
-        private Player CreatePlayer()
-        {
-            var player = Instantiate(_playerPrefab, _startZone);
-            player.transform.SetParent(transform);
-            player.transform.LookAt(_finishZone.transform);
-
-            player.Init();
-
-            return player;
         }
 
         public Character GetClosestCharacter()

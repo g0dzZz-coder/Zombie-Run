@@ -4,8 +4,10 @@ namespace ZombieRun
 {
     using Cameras;
     using Levels;
+    using Misc;
+    using Utils;
 
-    public class GameLogic : MonoBehaviour
+    public class GameLogic : MonoSingleton<GameLogic>
     {
         [SerializeField] private Transform _root = null;
         [SerializeField] private CameraFollow _camera = null;
@@ -13,21 +15,23 @@ namespace ZombieRun
 
         [Header("Events")]
         [SerializeField] private GameEvent _onGameStarted = null;
+        [SerializeField] private GameEvent _onGameEnded = null;
 
-        private Level _currentLevel;
-
-        private void Start()
-        {
-            StartGame();
-        }
+        public Transform Root => transform;
+        public Level CurrentLevel { get; private set; }
 
         public void StartGame()
         {
             LoadNextLevel();
 
-            _camera.SetTarget(_currentLevel.GetClosestCharacter().transform);
+            _camera.SetTarget(CurrentLevel.GetClosestCharacter().transform);
 
-            _onGameStarted?.Raise();
+            _onGameStarted?.Invoke();
+        }
+
+        public void EndGame(bool win)
+        {
+            _onGameEnded?.Invoke();
         }
 
         private void LoadNextLevel()
@@ -41,8 +45,8 @@ namespace ZombieRun
             for (var i = 0; i < _root.childCount; i++)
                 Destroy(_root.GetChild(0).gameObject);
 
-            _currentLevel = Instantiate(data.prefab, _root.transform);
-            _currentLevel.Init(data);
+            CurrentLevel = Instantiate(data.prefab, _root.transform);
+            CurrentLevel.Init(data);
         }
     }
 }

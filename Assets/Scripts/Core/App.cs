@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ZombieRun.Core
 {
-    public static class Game
+    public static class App
     {
         public static bool IsPaused { get; private set; }
 
@@ -13,7 +13,7 @@ namespace ZombieRun.Core
 
         public static void Pause()
         {
-            //Time.timeScale = 0;
+            Time.timeScale = 0;
             IsPaused = true;
 
             Paused?.Invoke();

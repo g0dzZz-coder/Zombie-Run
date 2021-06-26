@@ -89,8 +89,8 @@ GameObject:
   - component: {fileID: 5612267585594881597}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: Player
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -122,7 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 4a985b772febc5848980367973095e93, type: 2}
-  _movementController: {fileID: 0}
   _onPlayerDied: {fileID: 11400000, guid: 0743349d19966b847946984a111e327e, type: 2}
 --- !u!114 &5612267585594881597
 MonoBehaviour:

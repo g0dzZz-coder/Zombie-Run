@@ -5,31 +5,46 @@ namespace ZombieRun.UI
 {
     using Levels;
 
-    public class LevelProgressUI : MonoBehaviour
+    public class LevelProgressUI : UIElement
     {
-        [SerializeField] private Level _level = null;
         [SerializeField] private Slider _slider = null;
 
         private float _fullDistance;
         private float _lastDistance;
 
-        private void Start()
-        {
-            UpdateProgressFill(0f);
+        private Level _level = null;
 
-            _fullDistance = GetDistance();
+        private void Awake()
+        {
+            Hide();
         }
 
         private void LateUpdate()
         {
+            if (_level == null)
+                return;
+
             var distance = GetDistance();
-            if (_level == null || distance == _lastDistance)
+            if (distance == _lastDistance)
                 return;
 
             _lastDistance = distance;
             var progressValue = Mathf.InverseLerp(_fullDistance, 0f, _lastDistance);
 
             UpdateProgressFill(progressValue);
+        }
+
+        protected override void OnEnabled()
+        {
+            _level = GameLogic.Instance.CurrentLevel;
+            _fullDistance = GetDistance();
+
+            UpdateProgressFill(0f);
+        }
+
+        protected override void OnDisabled()
+        {
+
         }
 
         private void UpdateProgressFill(float value)

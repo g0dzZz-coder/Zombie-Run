@@ -23,7 +23,7 @@ namespace ZombieRun.UI
 
         public void OnExitButtonPressed()
         {
-            Game.Exit();
+            App.Exit();
         }
     }
 }

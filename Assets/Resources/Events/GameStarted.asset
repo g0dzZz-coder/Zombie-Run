@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72c532b6845d35d438462f952fe3f84e, type: 3}
-  m_Name: OnPlayedDied
+  m_Name: GameStarted
   m_EditorClassIdentifier: 

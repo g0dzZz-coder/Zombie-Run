@@ -6,25 +6,13 @@ namespace ZombieRun.UI
     using Core;
     using Input = UnityEngine.Input;
 
-    public class PauseMenu : PopupMenu
+    public class PauseMenu : UIElement
     {
-        [SerializeField] private Button resumeButton = null;
+        [SerializeField] private Button _resumeButton = null;
 
         private void Start()
         {
             Disable();
-        }
-
-        private void OnEnable()
-        {
-            if (resumeButton)
-                resumeButton.onClick.AddListener(OnUnpaused);
-        }
-
-        private void OnDisable()
-        {
-            if (resumeButton)
-                resumeButton.onClick.RemoveListener(OnUnpaused);
         }
 
         private void Update()
@@ -35,21 +23,34 @@ namespace ZombieRun.UI
 
         public void TogglePause()
         {
-            if (Game.IsPaused)
+            if (App.IsPaused)
                 OnUnpaused();
             else
                 OnPaused();
         }
 
+        protected override void OnEnabled()
+        {
+            App.Pause();
+
+            if (_resumeButton)
+                _resumeButton.onClick.AddListener(OnUnpaused);
+        }
+
+        protected override void OnDisabled()
+        {
+            if (_resumeButton)
+                _resumeButton.onClick.RemoveListener(OnUnpaused);
+        }
+
         private void OnPaused()
         {
-            Game.Pause();
             Show();
         }
 
         private void OnUnpaused()
         {
-            Game.UnPause();
+            App.UnPause();
             Hide();
         }
     }
