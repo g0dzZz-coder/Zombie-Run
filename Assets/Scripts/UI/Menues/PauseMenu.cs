@@ -4,6 +4,7 @@ using UnityEngine.UI;
 namespace ZombieRun.UI
 {
     using Core;
+    using Input = UnityEngine.Input;
 
     public class PauseMenu : PopupMenu
     {

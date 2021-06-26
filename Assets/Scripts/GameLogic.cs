@@ -2,15 +2,17 @@ using UnityEngine;
 
 namespace ZombieRun
 {
-    using Entities;
     using Cameras;
     using Levels;
 
     public class GameLogic : MonoBehaviour
     {
-        [SerializeField] private CameraController _cameraController = null;
         [SerializeField] private Transform _root = null;
+        [SerializeField] private CameraFollow _camera = null;
         [SerializeField] private LevelGroup _levelGroup = null;
+
+        [Header("Events")]
+        [SerializeField] private GameEvent _onGameStarted = null;
 
         private Level _currentLevel;
 
@@ -23,7 +25,9 @@ namespace ZombieRun
         {
             LoadNextLevel();
 
-            _cameraController.SetTarget(_currentLevel.Player.transform);
+            _camera.SetTarget(_currentLevel.Player.GetClosestCharacter());
+
+            _onGameStarted?.Raise();
         }
 
         private void LoadNextLevel()

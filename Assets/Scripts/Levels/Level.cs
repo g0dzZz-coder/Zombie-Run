@@ -2,16 +2,16 @@ using UnityEngine;
 
 namespace ZombieRun.Levels
 {
-    using Entities;
+    using Player;
 
     public class Level : MonoBehaviour
     {
-        [SerializeField] private PlayerGroup _playerPrefab = null;
-        [SerializeField] private Transform startZone = null;
-        [SerializeField] private Transform finishZone = null;
+        [SerializeField] private Player _playerPrefab = null;
+        [SerializeField] private Transform _startZone = null;
+        [SerializeField] private BoxCollider _finishZone = null;
 
         public LevelData Data { get; private set; }
-        public PlayerGroup Player { get;private set; }
+        public Player Player { get; private set; }
 
         public void Init(LevelData data)
         {
@@ -26,14 +26,14 @@ namespace ZombieRun.Levels
 
         public Vector3 GetFinishPosition()
         {
-            return finishZone.position;
+            return _finishZone.transform.position;
         }
 
-        private PlayerGroup CreatePlayer()
+        private Player CreatePlayer()
         {
-            var player = Instantiate(_playerPrefab, startZone);
+            var player = Instantiate(_playerPrefab, _startZone);
             player.transform.SetParent(transform);
-            player.transform.LookAt(finishZone);
+            player.transform.LookAt(_finishZone.transform);
 
             player.Init();
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZombieRun.Cameras
 {
-    public class CameraController : MonoBehaviour
+    public class CameraFollow : MonoBehaviour
     {
         [SerializeField] private Camera _camera;
         [SerializeField] private Transform _target = null;

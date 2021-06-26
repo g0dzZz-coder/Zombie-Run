@@ -86,8 +86,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4035711235907505193}
   - component: {fileID: 4035711235907505198}
+  - component: {fileID: 5612267585594881597}
   m_Layer: 0
-  m_Name: PlayerGroup
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +121,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6071e1b7e9b1d674fa9a53760eaa0fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterPrefab: {fileID: 4949358117031626941, guid: cd8dbad4bfdc9fc4c88434e891fed5bf, type: 3}
+  _data: {fileID: 11400000, guid: 4a985b772febc5848980367973095e93, type: 2}
+  _movementController: {fileID: 0}
+  _onPlayerDied: {fileID: 11400000, guid: 0743349d19966b847946984a111e327e, type: 2}
+--- !u!114 &5612267585594881597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035711235907505199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633b339f0ccf94a4fa81506a23ef3eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _joystick: {fileID: 4035711237171566702}
 --- !u!1 &4035711236192577400
 GameObject:
   m_ObjectHideFlags: 0
