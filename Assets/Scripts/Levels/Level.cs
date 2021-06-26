@@ -3,6 +3,8 @@ using UnityEngine;
 namespace ZombieRun.Levels
 {
     using Player;
+    using Entities;
+    using Utils;
 
     public class Level : MonoBehaviour
     {
@@ -19,9 +21,9 @@ namespace ZombieRun.Levels
             Player = CreatePlayer();
         }
 
-        public Vector3 GetPlayerPosition()
+        public void Restart()
         {
-            return Player ? Player.transform.position : Vector3.zero;
+
         }
 
         public Vector3 GetFinishPosition()
@@ -38,6 +40,11 @@ namespace ZombieRun.Levels
             player.Init();
 
             return player;
+        }
+
+        public Character GetClosestCharacter()
+        {
+            return Player.Characters.GetClosest(_finishZone.transform.position);
         }
     }
 }

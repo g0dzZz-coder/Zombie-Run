@@ -20513,7 +20513,19 @@ MonoBehaviour:
   Event: {fileID: 11400000, guid: 0743349d19966b847946984a111e327e, type: 2}
   Response:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2050328413995136879}
+        m_TargetAssemblyTypeName: ZombieRun.Levels.Level, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8061231662039478430
 GameObject:
   m_ObjectHideFlags: 0
@@ -22671,10 +22683,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1191329529891533006}
     m_Modifications:
+    - target: {fileID: 3768571486473525026, guid: a7f7aa41feef0ac4985b0273f640671d, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6515129952504789761, guid: a7f7aa41feef0ac4985b0273f640671d, type: 3}
       propertyPath: _level
       value: 
       objectReference: {fileID: 2050328413995136879}
+    - target: {fileID: 6577325042984590145, guid: a7f7aa41feef0ac4985b0273f640671d, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6869776308189405358, guid: a7f7aa41feef0ac4985b0273f640671d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -22691,6 +22711,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7750581737314400297, guid: a7f7aa41feef0ac4985b0273f640671d, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8527253276794236353, guid: a7f7aa41feef0ac4985b0273f640671d, type: 3}
       propertyPath: m_Name
       value: LevelProgressUI
@@ -22699,7 +22723,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4265005467434714688, guid: a7f7aa41feef0ac4985b0273f640671d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a7f7aa41feef0ac4985b0273f640671d, type: 3}
 --- !u!4 &3107573367940156653 stripped
 Transform:

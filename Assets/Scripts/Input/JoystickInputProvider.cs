@@ -15,7 +15,7 @@ namespace ZombieRun.Input
 
         public Vector3 GetDirection()
         {
-            var direction = new Vector3(1f, 0f, -_input).normalized;
+            var direction = new Vector3(1f, 0f, _input).normalized;
             return direction;
         }
 

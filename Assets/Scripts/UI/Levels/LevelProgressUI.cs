@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace ZombieRun.UI
 {
@@ -9,42 +8,38 @@ namespace ZombieRun.UI
     public class LevelProgressUI : MonoBehaviour
     {
         [SerializeField] private Level _level = null;
-
-        [Header("UI")]
-        [SerializeField] private Image _image = null;
-        [SerializeField] private TMP_Text _currentLevelText = null;
-        [SerializeField] private TMP_Text _nextLevelText = null;
+        [SerializeField] private Slider _slider = null;
 
         private float _fullDistance;
+        private float _lastDistance;
 
         private void Start()
         {
-            _image.type = Image.Type.Filled;
             UpdateProgressFill(0f);
 
             _fullDistance = GetDistance();
         }
 
-        private void Update()
+        private void LateUpdate()
         {
-            if (_level == null || _level.GetPlayerPosition().x > _level.GetFinishPosition().x)
+            var distance = GetDistance();
+            if (_level == null || distance == _lastDistance)
                 return;
 
-            var newDistance = GetDistance();
-            var progressValue = Mathf.InverseLerp(_fullDistance, 0f, newDistance);
+            _lastDistance = distance;
+            var progressValue = Mathf.InverseLerp(_fullDistance, 0f, _lastDistance);
 
             UpdateProgressFill(progressValue);
         }
 
         private void UpdateProgressFill(float value)
         {
-            _image.fillAmount = value;
+            _slider.value = value;
         }
 
         private float GetDistance()
         {
-            //return Vector3.Distance(_level.GetPlayerPosition(), _level.GetFinishPosition());
-            return (_level.GetFinishPosition() - _level.GetPlayerPosition()).sqrMagnitude;
+            return (_level.GetFinishPosition() - _level.GetClosestCharacter().transform.position).sqrMagnitude;
         }
     }
 }

@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d00cc587d6d6f349b8ea0d3f53b1f89, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  speed: 3
+  prefab: {fileID: 4035711235907505198, guid: a2d76533de392ed4582e2301fb148869, type: 3}
+  character: {fileID: 11400000, guid: a884c3a46d4888d4abc6f61742627d87, type: 2}
+  movement:
+    moveSpeed: 3
+    turnSpeed: 0.1

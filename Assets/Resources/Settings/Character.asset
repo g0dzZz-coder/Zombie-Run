@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7bcd622f5c0dd14cac12203cd9079ee, type: 3}
-  m_Name: Teammate
+  m_Name: Character
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4949358117031626941, guid: cd8dbad4bfdc9fc4c88434e891fed5bf, type: 3}

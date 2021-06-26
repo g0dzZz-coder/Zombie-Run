@@ -25,7 +25,7 @@ namespace ZombieRun
         {
             LoadNextLevel();
 
-            _camera.SetTarget(_currentLevel.Player.GetClosestCharacter());
+            _camera.SetTarget(_currentLevel.GetClosestCharacter().transform);
 
             _onGameStarted?.Raise();
         }

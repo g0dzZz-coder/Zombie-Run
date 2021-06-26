@@ -15,7 +15,7 @@ namespace ZombieRun.Player
         [Header("Events")]
         [SerializeField] private GameEvent _onPlayerDied = null;
 
-        private List<Character> _characters = new List<Character>();
+        public List<Character> Characters { get; private set; } = new List<Character>();
 
         private IInputProvider _inputProvider;
         private Collider _target;
@@ -37,7 +37,7 @@ namespace ZombieRun.Player
 
         private void AddTeammate(Character teammate)
         {
-            _characters.Add(teammate);
+            Characters.Add(teammate);
         }
 
         public void Die()
@@ -45,17 +45,12 @@ namespace ZombieRun.Player
             _onPlayerDied?.Raise();
         }
 
-        public Transform GetClosestCharacter()
-        {
-            return _characters.FirstOrDefault().transform;
-        }
-
         private void CreateCharacter()
         {
             var character = Instantiate(_data.character.prefab, transform);
             character.Init(_data.character, _inputProvider, _data.movement);
 
-            _characters.Add(character);
+            Characters.Add(character);
         }
     }
 }
