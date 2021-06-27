@@ -5,25 +5,25 @@ namespace ZombieRun.UI
 {
     using Core;
 
-    public class ExitMenu : MonoBehaviour
+    public class ExitMenu : UIElement
     {
         [SerializeField] private Button exitButton = null;
 
-        private void OnEnable()
+        public void OnExitButtonPressed()
+        {
+            App.Exit();
+        }
+
+        protected override void OnEnabled()
         {
             if (exitButton)
                 exitButton.onClick.AddListener(OnExitButtonPressed);
         }
 
-        private void OnDisable()
+        protected override void OnDisabled()
         {
             if (exitButton)
                 exitButton.onClick.RemoveListener(OnExitButtonPressed);
-        }
-
-        public void OnExitButtonPressed()
-        {
-            App.Exit();
         }
     }
 }

@@ -5,35 +5,42 @@ namespace ZombieRun.Player
 {
     using Entities;
     using Input;
+    using Levels.Triggers;
     using Misc;
 
     [RequireComponent(typeof(IInputProvider))]
-    public class Player : MonoBehaviour
+    public class Player : EntityBase<PlayerData>
     {
-        [SerializeField] private PlayerData _data = null;
-
-        [Header("Events")]
+        [SerializeField] private StackingTrigger _stackingTrigger = null;
         [SerializeField] private GameEvent _onPlayerDied = null;
 
         public List<Character> Characters { get; private set; } = new List<Character>();
-        public Collider Target { get; private set; }
+        public IInputProvider InputProvider { get; private set; }
 
-        private IInputProvider _inputProvider;
+        public Material Material => Data.material;
+
+        private void Awake()
+        {
+            Init();
+        }
 
         public void Init()
         {
-            _inputProvider = GetComponent<IInputProvider>();
-
             CreateCharacter();
+            InputProvider = GetComponent<IInputProvider>();
+
+            foreach (Character character in Characters)
+            {
+                character.Init(this);
+            }
         }
 
-        public void SetTarget(Collider target)
+        public void AddTeammate(Character teammate)
         {
-            Target = target;
-        }
+            if (Characters.Contains(teammate))
+                return;
 
-        private void AddTeammate(Character teammate)
-        {
+            teammate.Init(this);
             Characters.Add(teammate);
         }
 
@@ -44,9 +51,7 @@ namespace ZombieRun.Player
 
         private void CreateCharacter()
         {
-            var character = Instantiate(_data.character.prefab, transform);
-            character.Init(this, _inputProvider, _data.movement);
-
+            var character = Instantiate(Data.character.prefab, transform);
             Characters.Add(character);
         }
     }

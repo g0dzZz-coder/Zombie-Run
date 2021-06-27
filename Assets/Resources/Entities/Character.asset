@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Character
   m_EditorClassIdentifier: 
   prefab: {fileID: 4949358117031626941, guid: cd8dbad4bfdc9fc4c88434e891fed5bf, type: 3}
+  weapon: {fileID: 0}
+  material: {fileID: 2100000, guid: 418123d123f3fc7429a0438b0f9c8c14, type: 2}

@@ -1,16 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZombieRun.Levels
 {
-    using Player;
     using Entities;
+    using Entities.Spawn;
+    using Player;
     using Utils;
+    using Triggers;
 
     public class Level : MonoBehaviour
     {
-        [SerializeField] private Player _playerPrefab = null;
-        [SerializeField] private StartZone _startZone = null;
-        [SerializeField] private FinishZone _finishZone = null;
+        [SerializeField] private EndLevelTrigger _endLevelTrigger = null;
+        [SerializeField] private List<Spawner> _spawners = new List<Spawner>();
 
         public LevelData Data { get; private set; }
         public Player Player { get; private set; }
@@ -19,8 +21,10 @@ namespace ZombieRun.Levels
         {
             Data = data;
 
-            Player = _startZone.CreatePlayer(_playerPrefab);
-            _finishZone.Init();
+            foreach (Spawner spawner in _spawners)
+                spawner.Respawn();
+
+            Player = FindObjectOfType<Player>();
         }
 
         public void Restart()
@@ -30,12 +34,12 @@ namespace ZombieRun.Levels
 
         public Vector3 GetFinishPosition()
         {
-            return _finishZone.transform.position;
+            return _endLevelTrigger.transform.position;
         }
 
         public Character GetClosestCharacter()
         {
-            return Player.Characters.GetClosest(_finishZone.transform.position);
+            return Player.Characters.GetClosest(_endLevelTrigger.transform.position);
         }
     }
 }

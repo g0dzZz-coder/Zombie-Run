@@ -1,31 +1,50 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZombieRun.Entities
 {
-    using Input;
     using Player;
 
-    public class Character : MonoBehaviour
+    public class Character : EntityBase<CharacterData>
     {
         [SerializeField] private Animator _animator = null;
-        [SerializeField] private MovementController _movementController = null;
+        [SerializeField] private Renderer _renderer = null;
+        [SerializeField] private List<EntityBehavior> _behaviors = new List<EntityBehavior>();
 
-        public MovementController MovementController => _movementController;
+        public Player Player { get; private set; }
 
-        private Player _player;
-
-        public void Init(Player player, IInputProvider inputProvider, MovementSettings movementSettings)
+        private void Awake()
         {
-            _player = player;
-            _movementController.Init(inputProvider, movementSettings);
+            SetMaterial(Data.material);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
-            if (other == _player.Target)
+            if (collision.collider.TryGetComponent(out Character character))
             {
-
+                Debug.Log(true);
             }
+        }
+
+        public void Init(Player player)
+        {
+            Player = player;
+            SetMaterial(Player.Material);
+
+            foreach (EntityBehavior behavior in _behaviors)
+            {
+                behavior.Init(Player);
+            }
+        }
+
+        public void Die()
+        {
+            Destroy(gameObject);
+        }
+
+        private void SetMaterial(Material material)
+        {
+            _renderer.material = material;
         }
     }
 }

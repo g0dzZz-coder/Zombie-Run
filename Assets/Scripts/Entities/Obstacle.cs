@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+namespace ZombieRun.Entities
 {
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(Collider))]
+    public class Obstacle : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out Character character))
+            {
+                character.Die();
+            }
+        }
     }
 }

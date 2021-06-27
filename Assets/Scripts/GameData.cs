@@ -1,12 +1,30 @@
+using System;
 using UnityEngine;
+using ZombieRun.Input;
 
 namespace ZombieRun
 {
+    [Serializable]
+    public class MovementSettings
+    {
+        public float moveSpeed;
+        public float turnSpeed;
+
+        public IInputProvider InputProvider { get; set; }
+
+        public MovementSettings(float moveSpeed, float turnSpeed)
+        {
+            this.moveSpeed = moveSpeed;
+            this.turnSpeed = turnSpeed;
+        }
+    }
+
     [CreateAssetMenu(fileName = "GameSettings", menuName = "Settings/Game", order = 51)]
     public class GameData : ScriptableObject
     {
-        public float groupForwardSpeed = 1f;
         public float stackingRadius = 3f;
         public float controlSensitivity = 1f;
+
+        public MovementSettings movement = new MovementSettings(3f, 0.1f);
     }
 }
