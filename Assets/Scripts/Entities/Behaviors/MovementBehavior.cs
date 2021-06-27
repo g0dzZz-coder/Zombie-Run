@@ -19,10 +19,7 @@ namespace ZombieRun.Entities
 
         private void Awake()
         {
-            _inputProvider = GetComponentInParent<IInputProvider>();
-
             StopRun();
-            Rotate(Camera.main.transform.forward);
         }
 
         private void Update()

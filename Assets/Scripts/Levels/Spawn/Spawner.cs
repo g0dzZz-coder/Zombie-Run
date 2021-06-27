@@ -34,7 +34,7 @@ namespace ZombieRun.Entities.Spawn
             var obj = Instantiate(_prefab, _root);
             obj.transform.position = _spawnPositions[_lastIndex].position;
 
-            LastSpawned = obj.gameObject;
+            LastSpawned = obj;
             _spawnedObjects.Add(LastSpawned);
         }
 

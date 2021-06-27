@@ -5,13 +5,12 @@ namespace ZombieRun.Player
 {
     using Entities;
     using Input;
-    using Levels.Triggers;
     using Misc;
 
     [RequireComponent(typeof(IInputProvider))]
     public class Player : EntityBase<PlayerData>
     {
-        [SerializeField] private StackingTrigger _stackingTrigger = null;
+        [Header("Events")]
         [SerializeField] private GameEvent _onPlayerDied = null;
 
         public List<Character> Characters { get; private set; } = new List<Character>();
@@ -44,9 +43,10 @@ namespace ZombieRun.Player
             Characters.Add(teammate);
         }
 
-        public void Die()
+        public void OnCharacterDied()
         {
-            _onPlayerDied?.Invoke();
+            if (Characters.Count == 0)
+                _onPlayerDied?.Invoke();
         }
 
         private void CreateCharacter()

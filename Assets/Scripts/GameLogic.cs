@@ -19,6 +19,7 @@ namespace ZombieRun
 
         public Transform Root => transform;
         public Level CurrentLevel { get; private set; }
+        public Transform MainCharacter { get; private set; }
 
         public void StartGame()
         {
@@ -43,7 +44,7 @@ namespace ZombieRun
         private void LoadLevel(LevelData data)
         {
             for (var i = 0; i < _root.childCount; i++)
-                Destroy(_root.GetChild(0).gameObject);
+                Destroy(_root.GetChild(i).gameObject);
 
             CurrentLevel = Instantiate(data.prefab, _root.transform);
             CurrentLevel.Init(data);

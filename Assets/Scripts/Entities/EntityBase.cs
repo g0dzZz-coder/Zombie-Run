@@ -12,7 +12,5 @@ namespace ZombieRun.Entities
         [SerializeField] private T _data = null;
 
         protected T Data => _data;
-
-        //public abstract void OnSpawn();
     }
 }
