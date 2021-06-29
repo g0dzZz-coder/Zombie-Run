@@ -16,6 +16,9 @@ namespace ZombieRun.Misc
         {
             if (other.TryGetComponent(out StackableCharacterController character))
             {
+                if (character.Player == null)
+                    return;
+
                 _lastDetected = character.transform;
                 Detected?.Invoke(_lastDetected);
             }

@@ -5,6 +5,7 @@ namespace ZombieRun.Entities
 {
     using Player;
     using Misc;
+    using System.Collections;
 
     [RequireComponent(typeof(Collider))]
     public class EnemyController : EntityControllerBase<EnemyData>
@@ -49,7 +50,7 @@ namespace ZombieRun.Entities
         {
             if (other.TryGetComponent(out StackableCharacterController character))
             {
-                character.Die();
+                Attack(character);
             }
         }
 
@@ -65,9 +66,14 @@ namespace ZombieRun.Entities
             _view.OnRunEnded();
         }
 
-        //public override void OnDead()
-        //{
-        //    Destroy(gameObject);
-        //}
+        private void Attack(StackableCharacterController target)
+        {
+            target.Die();
+        }
+
+        public void Die()
+        {
+            Destroy(gameObject);
+        }
     }
 }

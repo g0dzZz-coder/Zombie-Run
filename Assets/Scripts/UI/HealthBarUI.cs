@@ -7,10 +7,11 @@ namespace ZombieRun.UI
     {
         [SerializeField] private Slider _slider = null;
 
+        private Transform _camera;
+
         private void LateUpdate()
         {
-            var camera = Camera.main;
-            Root.LookAt(transform.position + camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
+            RotateToCamera();
         }
 
         public void Init(float currenthHealth, float maxHealth)
@@ -21,14 +22,24 @@ namespace ZombieRun.UI
             UpdateProgressFill(currenthHealth);
         }
 
-        protected override void OnEnabled() { }
+        public void UpdateProgressFill(float value)
+        {
+            _slider.value = value;
+        }
+
+        protected override void OnEnabled() 
+        {
+            _camera = Camera.main.transform;
+        }
 
         protected override void OnDisabled() { }
 
-        public void UpdateProgressFill(float value)
+        private void RotateToCamera()
         {
-            Debug.Log(value);
-            _slider.value = value;
+            if (_camera == null)
+                return;
+
+            Root.LookAt(transform.position + _camera.rotation * Vector3.forward, _camera.rotation * Vector3.up);
         }
     }
 }

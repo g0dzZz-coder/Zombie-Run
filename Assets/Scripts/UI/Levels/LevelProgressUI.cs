@@ -16,7 +16,7 @@ namespace ZombieRun.UI
 
         private void Awake()
         {
-            Hide();
+            Disable();
         }
 
         private void LateUpdate()

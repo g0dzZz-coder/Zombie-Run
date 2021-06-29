@@ -2,8 +2,6 @@ using UnityEngine;
 
 namespace ZombieRun.Entities.Weapon
 {
-    using Misc;
-
     [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour
     {

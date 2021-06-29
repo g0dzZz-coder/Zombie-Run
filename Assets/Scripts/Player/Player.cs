@@ -15,9 +15,9 @@ namespace ZombieRun.Player
         [SerializeField] private StackingTrigger _stackRoot = null;
 
         public List<StackableCharacterController> Characters { get; private set; } = new List<StackableCharacterController>();
-        public Transform Root => _stackRoot.transform;
 
-        public Material Material => _data.material;
+        public PlayerData Data => _data;
+        public Transform Root => _stackRoot.transform;
 
         public event Action<List<StackableCharacterController>> CharactersChanged;
 
@@ -33,7 +33,7 @@ namespace ZombieRun.Player
                 return;
 
             teammate.transform.SetParent(Root);
-            teammate.OnStacked(_data);
+            teammate.OnStacked(this);
 
             Characters.Add(teammate);
             CharactersChanged?.Invoke(Characters);

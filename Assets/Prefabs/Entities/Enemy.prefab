@@ -2245,10 +2245,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 948866428941717390}
     m_Modifications:
-    - target: {fileID: 2469719463292412260, guid: eec4c94bf9b8718429c1fa6039dcf964, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5550165786572320319, guid: eec4c94bf9b8718429c1fa6039dcf964, type: 3}
       propertyPath: m_Name
       value: HealthBarUI

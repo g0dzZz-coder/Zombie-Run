@@ -10,6 +10,8 @@ namespace ZombieRun.Entities
         [SerializeField] private GameData _gameData = null;
         [SerializeField] private StackableCharacterView _view = null;
 
+        public Player Player { get; private set; }
+
         private float _turnSmoothVelocity;
         private float _targetAngle;
         private Transform _target;
@@ -25,9 +27,10 @@ namespace ZombieRun.Entities
             Move();
         }
 
-        public void OnStacked(PlayerData playerData)
+        public void OnStacked(Player player)
         {
-            _view.OnStacked(playerData.material);
+            Player = player;
+            _view.OnStacked(Player.Data.material);
         }
 
         public void SetTarget(Transform target)

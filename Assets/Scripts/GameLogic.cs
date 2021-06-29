@@ -15,24 +15,24 @@ namespace ZombieRun
         [SerializeField] private GameEvent _onGameStarted = null;
         [SerializeField] private GameEvent _onGameEnded = null;
 
+        public bool IsStarted { get; private set; }
         public Level CurrentLevel { get; private set; }
 
         public void StartGame()
         {
             LoadNextLevel();
-
-            _onGameStarted?.Invoke();
+            OnGameStarted();
         }
 
         public void RestartGame()
         {
             CurrentLevel.Restart();
-
-            _onGameStarted?.Invoke();
+            OnGameStarted();
         }
 
         public void EndGame(bool win)
         {
+            IsStarted = false;
             _onGameEnded?.Invoke();
         }
 
@@ -49,6 +49,12 @@ namespace ZombieRun
 
             CurrentLevel = Instantiate(data.prefab, _root.transform);
             CurrentLevel.Init(data);
+        }
+
+        private void OnGameStarted()
+        {
+            IsStarted = true;
+            _onGameStarted?.Invoke();
         }
     }
 }

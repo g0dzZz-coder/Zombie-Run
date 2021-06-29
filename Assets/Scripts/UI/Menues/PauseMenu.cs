@@ -8,11 +8,13 @@ namespace ZombieRun.UI
 
     public class PauseMenu : UIElement
     {
+        [SerializeField] private CanvasGroup _pauseButtonRoot = null;
         [SerializeField] private Button _resumeButton = null;
 
         private void Start()
         {
             Disable();
+            _pauseButtonRoot.gameObject.SetActive(false);
         }
 
         private void Update()
@@ -23,6 +25,9 @@ namespace ZombieRun.UI
 
         public void TogglePause()
         {
+            if (GameLogic.Instance.IsStarted == false)
+                return;
+
             if (App.IsPaused)
                 OnUnpaused();
             else
@@ -46,12 +51,29 @@ namespace ZombieRun.UI
         private void OnPaused()
         {
             Show();
+            HidePauseButton();
         }
 
         private void OnUnpaused()
         {
             App.UnPause();
+
             Hide();
+            ShowPauseButton();
+        }
+
+        public void ShowPauseButton()
+        {
+            _pauseButtonRoot.alpha = 1f;
+            _pauseButtonRoot.gameObject.SetActive(true);
+
+            LeanTween.alphaCanvas(_pauseButtonRoot, 1f, AnimationDuration);
+        }
+
+        public void HidePauseButton()
+        {
+            LeanTween.alphaCanvas(_pauseButtonRoot, 0f, AnimationDuration).setOnComplete(
+                () => _pauseButtonRoot.gameObject.SetActive(false));
         }
     }
 }

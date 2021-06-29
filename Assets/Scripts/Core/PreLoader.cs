@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace ZombieRun.Utils
+namespace ZombieRun.Core
 {
     using UI;
 

@@ -20,6 +20,8 @@ namespace ZombieRun.Entities
 
         public void OnDamageTaked(float currentHealth)
         {
+            animator.SetTrigger("OnHit");
+
             if (_healthBar == null)
                 return;
 

@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 2894979125659450149}
   - component: {fileID: 4949358117031626941}
   - component: {fileID: 6136376870616712291}
+  - component: {fileID: 4087750581086960613}
   - component: {fileID: 2894979125666960575}
   - component: {fileID: 7741969963255743558}
   - component: {fileID: 2033133542852815694}
@@ -233,6 +234,19 @@ MonoBehaviour:
   animator: {fileID: 2894979125666960575}
   _renderer: {fileID: 2894979125671176829}
   _deathEffectPrefab: {fileID: 3217621563925404247, guid: b0734ff0fbd500f45bd1d71698abba57, type: 3}
+--- !u!114 &4087750581086960613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894979125659674309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0b478ad45aa7b40bcc23467bd1f749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 11400000, guid: acc517d75de08d44490db5711dd5a399, type: 2}
 --- !u!95 &2894979125666960575
 Animator:
   serializedVersion: 3

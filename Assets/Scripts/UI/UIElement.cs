@@ -9,6 +9,7 @@ namespace ZombieRun.UI
         [SerializeField] private float _animationDuration = 0.5f;
 
         protected Transform Root => _root ? _root.transform : transform;
+        protected float AnimationDuration => _animationDuration;
 
         protected abstract void OnEnabled();
         protected abstract void OnDisabled();

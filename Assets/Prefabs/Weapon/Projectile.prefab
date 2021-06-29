@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5515946110392384367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 5515946109510744613}
@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 5515946111238186379}
   - component: {fileID: 5515946111238186377}
   - component: {fileID: 5515946111238186376}
+  - component: {fileID: 8247079746832410849}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -172,8 +173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _velocity: 1
-  _trailPrefab: {fileID: 0}
-  _hitEffect: {fileID: 11400000, guid: a51929777d09ed94baeeb60a49a253f2, type: 2}
+  _trailPrefab: {fileID: 6009708109956359488, guid: b9bbf841907ed4d47977a4cb88a2823e, type: 3}
+  _hitEffectPrefab: {fileID: 0}
 --- !u!54 &5515946111238186376
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -190,3 +191,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &8247079746832410849
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515946111238186378}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
