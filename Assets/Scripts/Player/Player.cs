@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ZombieRun.Player
 {
     using Entities;
-    using Levels.Triggers;
+    using Misc;
     using Utils;
 
     public class Player : MonoSingleton<Player>
@@ -14,12 +14,12 @@ namespace ZombieRun.Player
         [SerializeField] private GameData _gameData = null;
         [SerializeField] private StackingTrigger _stackRoot = null;
 
-        public List<StackableCharacter> Characters { get; private set; } = new List<StackableCharacter>();
+        public List<StackableCharacterController> Characters { get; private set; } = new List<StackableCharacterController>();
         public Transform Root => _stackRoot.transform;
 
         public Material Material => _data.material;
 
-        public event Action<List<StackableCharacter>> CharactersChanged;
+        public event Action<List<StackableCharacterController>> CharactersChanged;
 
         private void Awake()
         {
@@ -27,19 +27,19 @@ namespace ZombieRun.Player
             Init();
         }
 
-        public void AddToGroup(StackableCharacter teammate)
+        public void AddToGroup(StackableCharacterController teammate)
         {
             if (Characters.Contains(teammate))
                 return;
 
             teammate.transform.SetParent(Root);
-            teammate.OnStacked(_data.material);
+            teammate.OnStacked(_data);
 
             Characters.Add(teammate);
             CharactersChanged?.Invoke(Characters);
         }
 
-        public void RemoveFromGroup(StackableCharacter character)
+        public void RemoveFromGroup(StackableCharacterController character)
         {
             if (Characters.Contains(character) == false)
                 return;
@@ -48,7 +48,7 @@ namespace ZombieRun.Player
             CharactersChanged?.Invoke(Characters);
 
             if (Characters.Count == 0)
-                GameLogic.Instance.RestartGame();
+                GameLogic.Instance.EndGame(false);
         }
 
         public void RemoveAllCharacters()

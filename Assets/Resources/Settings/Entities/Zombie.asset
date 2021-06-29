@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Zombie
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: e826d4e6cc74d8b4e85b5e8b7498205a, type: 2}
-  health: 100
-  movementSpeed: 1
+  health: 10
+  movement:
+    moveSpeed: {fileID: 11400000, guid: 9b4ab36a341b71c4289a3719cbd1af71, type: 2}
+    turnSpeed: 0.1
   detectionRadius: 5

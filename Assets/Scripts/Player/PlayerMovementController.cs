@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ZombieRun.Player
 {
     using Input;
-    using ZombieRun.Entities;
+    using Entities;
 
     [RequireComponent(typeof(IInputProvider))]
     public class PlayerMovementController : MonoBehaviour
@@ -14,74 +14,64 @@ namespace ZombieRun.Player
         [SerializeField] private CharacterController _controller = null;
 
         private bool _isRunning;
-        private List<MovementBehavior> _targets = new List<MovementBehavior>();
         private IInputProvider _inputProvider;
 
-        private void Awake()
+        private void Start()
         {
             _inputProvider = GetComponent<IInputProvider>();
-            StartRun();
+            StartRun(_player.Characters);
         }
 
         private void OnEnable()
         {
-            _player.CharactersChanged += SetTargets;
+            _player.CharactersChanged += StartRun;
         }
 
         private void OnDisable()
         {
-            _player.CharactersChanged -= SetTargets;
+            _player.CharactersChanged -= StartRun;
         }
 
         private void Update()
         {
-            if (_isRunning == false || _targets == null || _targets.Count == 0)
+            if (_isRunning == false || _player.Characters == null || _player.Characters.Count == 0)
                 return;
 
-            Move();
-            foreach (var target in _targets)
+            var direction = _inputProvider.GetDirection();
+            Move(direction);
+
+            foreach (StackableCharacterController target in _player.Characters)
             {
-                target.Rotate(_inputProvider.GetDirection());
-                //target.Move();
+                target.Rotate(direction);
             }
         }
 
-        public void SetTargets(List<StackableCharacter> characters)
+        public void StartRun(List<StackableCharacterController> targets)
         {
-            _targets.Clear();
-            foreach (var character in characters)
+            foreach (StackableCharacterController target in targets)
             {
-                if (character.TryGetComponent(out MovementBehavior movement) == false)
-                    return;
-
-                movement.SetTarget(_player.Root);
-                _targets.Add(movement);
+                target.SetTarget(_player.Root);
             }
-        }
-
-        public void StartRun()
-        {
-            foreach (var target in _targets)
-                target.StartRun();
 
             _isRunning = true;
         }
 
-        public void StopRun()
+        public void StopRun(List<StackableCharacterController> targets)
         {
-            foreach (var target in _targets)
-                target.StopRun();
+            foreach (StackableCharacterController target in targets)
+            {
+                target.SetTarget(null);
+            }
 
             _isRunning = false;
         }
 
-        public void Move()
+        public void Move(Vector3 direction)
         {
-            var direction = _inputProvider.GetDirection();
             var targetAngle = direction.z * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-
             var motion = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            _controller.Move(motion.normalized * _data.movement.moveSpeed * Time.deltaTime);
+
+            _controller.Move(motion.normalized * _data.MoveSpeed * Time.deltaTime);
         }
     }
 }

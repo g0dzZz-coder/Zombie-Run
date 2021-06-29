@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7878172142246711340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7878172142246711340
 Transform:
@@ -43,12 +43,12 @@ GameObject:
   - component: {fileID: 989880738014924638}
   - component: {fileID: 5084158328204598804}
   - component: {fileID: 1528879823072512670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9087416602619587999
 Transform:
@@ -138,12 +138,12 @@ GameObject:
   - component: {fileID: 5401080190575199437}
   - component: {fileID: 6787762264129026060}
   - component: {fileID: 8103837761467274337}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5567635573975041383
 Transform:

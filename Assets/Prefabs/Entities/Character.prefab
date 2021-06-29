@@ -177,8 +177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2894979125659450149}
   - component: {fileID: 4949358117031626941}
-  - component: {fileID: 2688623172316834217}
-  - component: {fileID: 5335759367191609819}
+  - component: {fileID: 6136376870616712291}
   - component: {fileID: 2894979125666960575}
   - component: {fileID: 7741969963255743558}
   - component: {fileID: 2033133542852815694}
@@ -217,38 +216,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: a884c3a46d4888d4abc6f61742627d87, type: 2}
-  _animator: {fileID: 2894979125666960575}
+  _gameData: {fileID: 11400000, guid: dca651654500879498d5c023705d84d0, type: 2}
+  _view: {fileID: 6136376870616712291}
+--- !u!114 &6136376870616712291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894979125659674309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698616575b6c0bd4f9ba96bcc0d80d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2894979125666960575}
   _renderer: {fileID: 2894979125671176829}
-  _behaviors:
-  - {fileID: 2688623172316834217}
-  - {fileID: 5335759367191609819}
---- !u!114 &2688623172316834217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2894979125659674309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e01215bcc31d266428209615ed8bf11c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: dca651654500879498d5c023705d84d0, type: 2}
-  _controller: {fileID: 7741969963255743558}
---- !u!114 &5335759367191609819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2894979125659674309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e358f1b116a6214d87ed7fe71bce0db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deathEffect: {fileID: 11400000, guid: 8b9ee8fcd4b754b4da4a17b14c533860, type: 2}
+  _deathEffectPrefab: {fileID: 3217621563925404247, guid: b0734ff0fbd500f45bd1d71698abba57, type: 3}
 --- !u!95 &2894979125666960575
 Animator:
   serializedVersion: 3

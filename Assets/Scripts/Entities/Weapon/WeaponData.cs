@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ZombieRun.Entities
+namespace ZombieRun.Entities.Weapon
 {
     [CreateAssetMenu(fileName = "Weapon", menuName = "Settings/Weapon", order = 51)]
     public class WeaponData : ScriptableObject

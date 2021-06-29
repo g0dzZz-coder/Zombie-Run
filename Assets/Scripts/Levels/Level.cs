@@ -4,8 +4,8 @@ using UnityEngine;
 namespace ZombieRun.Levels
 {
     using Entities.Spawn;
+    using Misc;
     using Player;
-    using Triggers;
     using Utils;
 
     public class Level : MonoBehaviour

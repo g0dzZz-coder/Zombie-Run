@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ZombieRun.Levels.Triggers
+namespace ZombieRun.Misc
 {
     public abstract class Trigger<T> : MonoBehaviour where T : Collider
     {
@@ -19,5 +19,7 @@ namespace ZombieRun.Levels.Triggers
         }
 
         private T _collider;
+
+        protected abstract void OnTriggerEnter(Collider other);
     }
 }

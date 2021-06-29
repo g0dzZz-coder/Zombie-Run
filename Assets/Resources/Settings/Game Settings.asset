@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stackingRadius: 2
   controlSensitivity: {fileID: 11400000, guid: 6a21b3f7195cd544fb3f6d68598c3f6b, type: 2}
-  movement:
-    moveSpeed: 5
+  _movement:
+    moveSpeed: {fileID: 11400000, guid: d0e70be4830809a4aade446f67f446f5, type: 2}
     turnSpeed: 0.1

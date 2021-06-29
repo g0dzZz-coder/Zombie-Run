@@ -8,6 +8,5 @@ namespace ZombieRun.Player
     public class PlayerData : EntityData
     {
         public Player prefab = null;
-        public CharacterData character = null;
     }
 }

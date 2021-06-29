@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ZombieRun.Levels.Triggers
+namespace ZombieRun.Misc
 {
     using Entities;
     using Player;
@@ -10,12 +10,12 @@ namespace ZombieRun.Levels.Triggers
     {
         private Player _player;
 
-        private void OnTriggerEnter(Collider other)
+        protected override void OnTriggerEnter(Collider other)
         {
             if (_player == null)
                 return;
 
-            if (other.TryGetComponent(out StackableCharacter character))
+            if (other.TryGetComponent(out StackableCharacterController character))
             {
                 _player.AddToGroup(character);
             }
