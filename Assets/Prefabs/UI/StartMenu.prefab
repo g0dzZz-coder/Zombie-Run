@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _root: {fileID: 6010890364801239090}
-  _animationDuration: 0.5
+  _animationDuration: 0.25
   onClicked: {fileID: 11400000, guid: 2bb4a9e96ec4caf429bc2767d098247b, type: 2}
   _button: {fileID: 4490168758287495988}
 --- !u!114 &8963561527972828911

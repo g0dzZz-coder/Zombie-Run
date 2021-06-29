@@ -1,58 +1,73 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZombieRun.Player
 {
     using Entities;
-    using Input;
-    using Misc;
+    using Levels.Triggers;
+    using Utils;
 
-    [RequireComponent(typeof(IInputProvider))]
-    public class Player : EntityBase<PlayerData>
+    public class Player : MonoSingleton<Player>
     {
-        [Header("Events")]
-        [SerializeField] private GameEvent _onPlayerDied = null;
+        [SerializeField] private PlayerData _data = null;
+        [SerializeField] private GameData _gameData = null;
+        [SerializeField] private StackingTrigger _stackRoot = null;
 
-        public List<Character> Characters { get; private set; } = new List<Character>();
-        public IInputProvider InputProvider { get; private set; }
+        public List<StackableCharacter> Characters { get; private set; } = new List<StackableCharacter>();
+        public Transform Root => _stackRoot.transform;
 
-        public Material Material => Data.material;
+        public Material Material => _data.material;
+
+        public event Action<List<StackableCharacter>> CharactersChanged;
 
         private void Awake()
         {
+            OnAwake();
             Init();
         }
 
-        public void Init()
-        {
-            CreateCharacter();
-            InputProvider = GetComponent<IInputProvider>();
-
-            foreach (Character character in Characters)
-            {
-                character.Init(this);
-            }
-        }
-
-        public void AddTeammate(Character teammate)
+        public void AddToGroup(StackableCharacter teammate)
         {
             if (Characters.Contains(teammate))
                 return;
 
-            teammate.Init(this);
+            teammate.transform.SetParent(Root);
+            teammate.OnStacked(_data.material);
+
             Characters.Add(teammate);
+            CharactersChanged?.Invoke(Characters);
         }
 
-        public void OnCharacterDied()
+        public void RemoveFromGroup(StackableCharacter character)
         {
+            if (Characters.Contains(character) == false)
+                return;
+
+            Characters.Remove(character);
+            CharactersChanged?.Invoke(Characters);
+
             if (Characters.Count == 0)
-                _onPlayerDied?.Invoke();
+                GameLogic.Instance.RestartGame();
         }
 
-        private void CreateCharacter()
+        public void RemoveAllCharacters()
         {
-            var character = Instantiate(Data.character.prefab, transform);
-            Characters.Add(character);
+            foreach (var character in Characters)
+                Destroy(character.gameObject);
+
+            Characters.Clear();
+            CharactersChanged?.Invoke(Characters);
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            Root.position = position;
+        }
+
+        private void Init()
+        {
+            _stackRoot.SetRadius(_gameData.stackingRadius);
         }
     }
 }

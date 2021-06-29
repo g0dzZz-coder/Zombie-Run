@@ -9,7 +9,6 @@ namespace ZombieRun.Editor
     [CustomEditor(typeof(GameEvent))]
     public class GameEventEditor : Editor
     {
-
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
@@ -18,7 +17,7 @@ namespace ZombieRun.Editor
 
             var gameEvent = target as GameEvent;
 
-            if (GUILayout.Button("Raise"))
+            if (GUILayout.Button("Invoke"))
             {
                 gameEvent.Invoke();
             }

@@ -1,26 +1,19 @@
 using System;
 using UnityEngine;
 
-namespace ZombieRun.Cameras
+namespace ZombieRun.Misc
 {
+    using Player;
+
     public class CameraFollow : MonoBehaviour
     {
         [SerializeField] private Camera _camera;
-        [SerializeField] private Transform _target = null;
         [SerializeField] private float _smoothSpeed = 0.125f;
         [SerializeField] private float _offset = 15f;
 
         private void LateUpdate()
         {
-            if (_target == null)
-                return;
-
-            FollowTo(_target);
-        }
-
-        public void SetTarget(Transform target)
-        {
-            _target = target;
+            FollowTo(Player.Instance.Root);
         }
 
         private void FollowTo(Transform target)

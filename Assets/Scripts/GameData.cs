@@ -4,6 +4,8 @@ using ZombieRun.Input;
 
 namespace ZombieRun
 {
+    using Misc;
+
     [Serializable]
     public class MovementSettings
     {
@@ -19,11 +21,11 @@ namespace ZombieRun
         }
     }
 
-    [CreateAssetMenu(fileName = "GameSettings", menuName = "Settings/Game", order = 51)]
+    [CreateAssetMenu(fileName = "Game Settings", menuName = "Settings/Game", order = 51)]
     public class GameData : ScriptableObject
     {
         public float stackingRadius = 3f;
-        public float controlSensitivity = 1f;
+        public FloatVariable controlSensitivity = null;
 
         public MovementSettings movement = new MovementSettings(3f, 0.1f);
     }

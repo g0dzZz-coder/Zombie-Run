@@ -5,24 +5,20 @@ namespace ZombieRun.Levels.Triggers
     using Entities;
     using Player;
 
-    public class StackingTrigger : Trigger
+    [RequireComponent(typeof(SphereCollider))]
+    public class StackingTrigger : Trigger<SphereCollider>
     {
-        private Player _player;
-
-        public void Init(Player player)
-        {
-            _player = player;
-        }
-
         private void OnTriggerEnter(Collider other)
         {
-            if (_player == null)
-                return;
-
-            if (other.TryGetComponent(out Character character))
+            if (other.TryGetComponent(out StackableCharacter character))
             {
-                _player.AddTeammate(character);
+                Player.Instance.AddToGroup(character);
             }
+        }
+
+        public void SetRadius(float radius)
+        {
+            Collider.radius = radius;
         }
     }
 }

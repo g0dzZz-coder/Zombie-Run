@@ -1,9 +1,8 @@
 using UnityEngine;
 
-namespace ZombieRun
+namespace ZombieRun.Entities
 {
-    [CreateAssetMenu(fileName = "GameSettings", menuName = "Settings/Weapon", order = 51)]
-
+    [CreateAssetMenu(fileName = "Weapon", menuName = "Settings/Weapon", order = 51)]
     public class WeaponData : ScriptableObject
     {
         public float fireRate = 1f;

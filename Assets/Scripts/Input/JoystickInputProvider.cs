@@ -2,8 +2,11 @@ using UnityEngine;
 
 namespace ZombieRun.Input
 {
+    using Misc;
+
     public class JoystickInputProvider : MonoBehaviour, IInputProvider
     {
+        [SerializeField] private FloatVariable _sensitivity = null;
         [SerializeField] private VariableJoystick _joystick = null;
 
         private float _input;
@@ -21,7 +24,7 @@ namespace ZombieRun.Input
 
         private void GetInput()
         {
-            _input = _joystick.Horizontal;
+            _input = _joystick.Horizontal * _sensitivity.value;
         }
     }
 }

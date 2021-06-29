@@ -4,16 +4,16 @@ namespace ZombieRun.Entities
 
     public class HealthBehavior : EntityBehavior
     {
-        public override void Init(Player player)
+        public override void OnInited()
         {
-            Player = player;
+
         }
 
         public void Die()
         {
-            Destroy(gameObject);
+            Player.Instance.RemoveFromGroup(Source as StackableCharacter);
 
-            Player.OnCharacterDied();
+            Destroy(gameObject);
         }
     }
 }

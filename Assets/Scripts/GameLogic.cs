@@ -1,8 +1,8 @@
 using UnityEngine;
+using System;
 
 namespace ZombieRun
 {
-    using Cameras;
     using Levels;
     using Misc;
     using Utils;
@@ -10,22 +10,24 @@ namespace ZombieRun
     public class GameLogic : MonoSingleton<GameLogic>
     {
         [SerializeField] private Transform _root = null;
-        [SerializeField] private CameraFollow _camera = null;
         [SerializeField] private LevelGroup _levelGroup = null;
 
         [Header("Events")]
         [SerializeField] private GameEvent _onGameStarted = null;
         [SerializeField] private GameEvent _onGameEnded = null;
 
-        public Transform Root => transform;
         public Level CurrentLevel { get; private set; }
-        public Transform MainCharacter { get; private set; }
 
         public void StartGame()
         {
             LoadNextLevel();
 
-            _camera.SetTarget(CurrentLevel.GetClosestCharacter().transform);
+            _onGameStarted?.Invoke();
+        }
+
+        public void RestartGame()
+        {
+            CurrentLevel.Restart();
 
             _onGameStarted?.Invoke();
         }

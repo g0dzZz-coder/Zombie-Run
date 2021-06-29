@@ -7,10 +7,8 @@ namespace ZombieRun.Entities
         public Material material = null;
     }
 
-    public abstract class EntityBase<T> : MonoBehaviour where T: EntityData
+    public abstract class EntityBase : MonoBehaviour
     {
-        [SerializeField] private T _data = null;
-
-        protected T Data => _data;
+        
     }
 }

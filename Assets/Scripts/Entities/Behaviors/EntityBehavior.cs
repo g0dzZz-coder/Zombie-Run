@@ -2,12 +2,16 @@ using UnityEngine;
 
 namespace ZombieRun.Entities
 {
-    using Player;
-
     public abstract class EntityBehavior : MonoBehaviour
     {
-        protected Player Player { get; set; }
+        public EntityBase Source { get; protected set; }
 
-        public abstract void Init(Player player);
+        public void Init(EntityBase entity)
+        {
+            Source = entity;
+            OnInited();
+        }
+
+        public abstract void OnInited();
     }
 }

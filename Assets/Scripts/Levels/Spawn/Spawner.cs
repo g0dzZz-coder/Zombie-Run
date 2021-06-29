@@ -8,7 +8,7 @@ namespace ZombieRun.Entities.Spawn
         [SerializeField] private GameObject _prefab = null;
         [SerializeField] private Transform _root = null;
         [SerializeField] private Transform[] _spawnPositions = null;
-        [Range(0, 10)]
+        [Range(0, 20)]
         [SerializeField] private int _requiredAmount;
 
         public GameObject LastSpawned { get; private set; }

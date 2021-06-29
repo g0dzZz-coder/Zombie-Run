@@ -9,6 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72c532b6845d35d438462f952fe3f84e, type: 3}
-  m_Name: GameStarting
+  m_Script: {fileID: 11500000, guid: 7fa4dfd1ea93db640b9c7b9b3ea6a93b, type: 3}
+  m_Name: Game Settings
   m_EditorClassIdentifier: 
+  stackingRadius: 2
+  controlSensitivity: {fileID: 11400000, guid: 6a21b3f7195cd544fb3f6d68598c3f6b, type: 2}
+  movement:
+    moveSpeed: 5
+    turnSpeed: 0.1

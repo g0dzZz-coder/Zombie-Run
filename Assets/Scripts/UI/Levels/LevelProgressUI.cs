@@ -24,7 +24,7 @@ namespace ZombieRun.UI
             if (_level == null)
                 return;
 
-            var distance = GetDistance();
+            var distance = _level.GetRemainingDistance();
             if (distance == _lastDistance)
                 return;
 
@@ -37,24 +37,16 @@ namespace ZombieRun.UI
         protected override void OnEnabled()
         {
             _level = GameLogic.Instance.CurrentLevel;
-            _fullDistance = GetDistance();
+            _fullDistance = _level.GetRemainingDistance();
 
             UpdateProgressFill(0f);
         }
 
-        protected override void OnDisabled()
-        {
-
-        }
+        protected override void OnDisabled() { }
 
         private void UpdateProgressFill(float value)
         {
             _slider.value = value;
-        }
-
-        private float GetDistance()
-        {
-            return (_level.GetFinishPosition() - _level.GetClosestCharacter().transform.position).sqrMagnitude;
         }
     }
 }

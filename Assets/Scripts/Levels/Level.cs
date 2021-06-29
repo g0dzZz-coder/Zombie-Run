@@ -3,43 +3,45 @@ using UnityEngine;
 
 namespace ZombieRun.Levels
 {
-    using Entities;
     using Entities.Spawn;
     using Player;
-    using Utils;
     using Triggers;
+    using Utils;
 
     public class Level : MonoBehaviour
     {
+        [SerializeField] private Transform _start = null;
         [SerializeField] private EndLevelTrigger _endLevelTrigger = null;
         [SerializeField] private List<Spawner> _spawners = new List<Spawner>();
 
         public LevelData Data { get; private set; }
-        public Player Player { get; private set; }
 
         public void Init(LevelData data)
         {
             Data = data;
-
-            foreach (Spawner spawner in _spawners)
-                spawner.Respawn();
-
-            Player = FindObjectOfType<Player>();
+            Restart();
         }
 
         public void Restart()
         {
+            foreach (Spawner spawner in _spawners)
+                spawner.Respawn();
 
+            Player.Instance.SetPosition(_start.position);
         }
 
-        public Vector3 GetFinishPosition()
+        public float GetRemainingDistance()
         {
-            return _endLevelTrigger.transform.position;
-        }
-
-        public Character GetClosestCharacter()
-        {
-            return Player.Characters.GetClosest(_endLevelTrigger.transform.position);
+            try
+            {
+                var endPosition = _endLevelTrigger.transform.position;
+                var closestCharacterPosition = Player.Instance.Characters.GetClosest(endPosition).transform.position;
+                return (endPosition - closestCharacterPosition).sqrMagnitude;
+            }
+            catch
+            {
+                return float.MaxValue;
+            }
         }
     }
 }
