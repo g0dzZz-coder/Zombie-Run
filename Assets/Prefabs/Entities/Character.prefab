@@ -236,7 +236,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: dca651654500879498d5c023705d84d0, type: 2}
   _controller: {fileID: 7741969963255743558}
-  _animator: {fileID: 2894979125666960575}
 --- !u!114 &5335759367191609819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e358f1b116a6214d87ed7fe71bce0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deathEffect: {fileID: 11400000, guid: 8b9ee8fcd4b754b4da4a17b14c533860, type: 2}
 --- !u!95 &2894979125666960575
 Animator:
   serializedVersion: 3

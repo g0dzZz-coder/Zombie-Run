@@ -67,7 +67,7 @@ namespace ZombieRun.Player
 
         private void Init()
         {
-            _stackRoot.SetRadius(_gameData.stackingRadius);
+            _stackRoot.Init(this, _gameData.stackingRadius);
         }
     }
 }

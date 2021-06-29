@@ -11,27 +11,30 @@ namespace ZombieRun.Entities
         private float _targetAngle;
         private bool _isRunning;
 
-        private void Awake()
-        {
-            StopRun();
-        }
+        private Transform _target;
 
         private void Update()
         {
-            if (_isRunning == false)
+            if ( _target == null)
                 return;
+
+            if (Vector3.Distance(transform.position, _target.position) < 1f)
+                return;
+
+            var step = _data.movement.moveSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, _target.position, step);
 
             //Move();
         }
 
         public override void OnInited()
         {
-
+            StopRun();
         }
 
         public void SetTarget(Transform target)
         {
-
+            _target = target;
         }
 
         public void StartRun()

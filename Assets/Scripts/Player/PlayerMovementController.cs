@@ -54,7 +54,7 @@ namespace ZombieRun.Player
                 if (character.TryGetComponent(out MovementBehavior movement) == false)
                     return;
 
-                movement.StartRun();
+                movement.SetTarget(_player.Root);
                 _targets.Add(movement);
             }
         }
