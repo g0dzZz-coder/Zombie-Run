@@ -36,6 +36,7 @@ namespace ZombieRun.Entities.Enemies
             CurrentHealth = Source.Data.health;
 
             DamageTaked += Source.View.OnDamageTaked;
+            DamageTaked += Source.Stuned;
             HealthChanged += Source.View.OnHealthChanged;
         }
 
@@ -45,6 +46,7 @@ namespace ZombieRun.Entities.Enemies
                 return;
 
             DamageTaked -= Source.View.OnDamageTaked;
+            DamageTaked -= Source.Stuned;
             HealthChanged -= Source.View.OnHealthChanged;
         }
     }

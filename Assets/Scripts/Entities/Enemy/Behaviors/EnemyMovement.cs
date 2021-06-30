@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 namespace ZombieRun.Entities.Enemies
 {
@@ -22,8 +23,11 @@ namespace ZombieRun.Entities.Enemies
 
         private void OnDestroy()
         {
+            StopAllCoroutines();
+
             _trigger.Detected -= SetTarget;
             _trigger.Undetected -= RemoveTarget;
+            Source.Stuned -= () => StartCoroutine(OnStuned());
         }
 
         public void SetTarget(Transform target)
@@ -40,6 +44,8 @@ namespace ZombieRun.Entities.Enemies
 
             _trigger.Detected += SetTarget;
             _trigger.Undetected += RemoveTarget;
+
+            Source.Stuned += () => StartCoroutine(OnStuned());
         }
 
         private void RemoveTarget(Transform target)
@@ -48,6 +54,15 @@ namespace ZombieRun.Entities.Enemies
             _agent.isStopped = true;
 
             Source.View.OnRunEnded();
+        }
+
+        private IEnumerator OnStuned()
+        {
+            _agent.speed = 0;
+
+            yield return new WaitForSeconds(Source.Data.stunDuration);
+
+            _agent.speed = Source.Data.MoveSpeed;
         }
     }
 }

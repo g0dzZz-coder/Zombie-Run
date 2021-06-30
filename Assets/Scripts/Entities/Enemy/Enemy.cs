@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace ZombieRun.Entities.Enemies
 {
@@ -11,6 +12,8 @@ namespace ZombieRun.Entities.Enemies
         [SerializeField] private EnemyBehaviorBase[] _behaviors = null;
 
         public EnemyView View => _view;
+
+        public Action Stuned { get; set; }
 
         private void Start()
         {
