@@ -45,6 +45,7 @@ namespace ZombieRun.Entities.Enemies
         private void RemoveTarget(Transform target)
         {
             _target = null;
+            _agent.isStopped = true;
 
             Source.View.OnRunEnded();
         }

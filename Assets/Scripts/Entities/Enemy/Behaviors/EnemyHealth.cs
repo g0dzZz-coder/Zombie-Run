@@ -41,6 +41,9 @@ namespace ZombieRun.Entities.Enemies
 
         private void OnDestroy()
         {
+            if (IsInited == false)
+                return;
+
             DamageTaked -= Source.View.OnDamageTaked;
             HealthChanged -= Source.View.OnHealthChanged;
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ZombieRun.Utils
 {
@@ -30,7 +31,7 @@ namespace ZombieRun.Utils
             return closest;
         }
 
-        public static List<T> GetComponents<T, K>(this IEnumerable<K> enumerable) where T : Component where K: Component
+        public static List<T> GetComponents<T, K>(this IEnumerable<K> enumerable) where T : Component where K : Component
         {
             if (enumerable == null)
                 throw new ArgumentNullException(nameof(enumerable));
@@ -49,6 +50,11 @@ namespace ZombieRun.Utils
             }
 
             return result;
+        }
+
+        public static T GetRandom<T>(this T[] array)
+        {
+            return array[Random.Range(0, array.Length)];
         }
     }
 }
