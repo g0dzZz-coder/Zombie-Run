@@ -3,8 +3,12 @@ using UnityEngine;
 
 namespace ZombieRun.Entities
 {
+    using Misc;
+
     public class Health : MonoBehaviour
     {
+        [SerializeField] private Effect _deathEffect = null;
+
         public int MaxHealth { get; private set; }
         public int CurrentHealth { get; private set; }
 
@@ -37,6 +41,11 @@ namespace ZombieRun.Entities
         private void Die()
         {
             Destroy(gameObject);
+        }
+
+        private void CreateDeathEffect()
+        {
+
         }
     }
 }

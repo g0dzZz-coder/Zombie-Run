@@ -1,3 +1,4 @@
+using Lean.Pool;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -45,7 +46,7 @@ namespace ZombieRun.Entities
 
         private void Attack()
         {
-            var bullet = Instantiate(_weapon.bulletPrefab, _firePoint.position, _firePoint.rotation);
+            var bullet = LeanPool.Spawn(_weapon.bulletPrefab, _firePoint.position, _firePoint.rotation);
             bullet.Init(_enemyLayer, _weapon.damage);
         }
 

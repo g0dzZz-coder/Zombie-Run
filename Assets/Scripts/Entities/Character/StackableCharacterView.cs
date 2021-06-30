@@ -1,3 +1,4 @@
+using Lean.Pool;
 using UnityEngine;
 
 namespace ZombieRun.Entities
@@ -37,7 +38,7 @@ namespace ZombieRun.Entities
 
         private void CreateEffect(Transform transform)
         {
-            Instantiate(_deathEffectPrefab, transform.position, transform.rotation);
+            LeanPool.Spawn(_deathEffectPrefab, transform.position, transform.rotation);
         }
     }
 }

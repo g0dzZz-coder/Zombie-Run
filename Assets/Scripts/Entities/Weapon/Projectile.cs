@@ -1,4 +1,4 @@
-using System.Collections;
+using Lean.Pool;
 using UnityEngine;
 
 namespace ZombieRun.Entities.Weapon
@@ -41,7 +41,6 @@ namespace ZombieRun.Entities.Weapon
             rigidbody.AddForce(transform.rotation * Vector3.forward * _velocity, ForceMode.Impulse);
 
             CreateTrail();
-            StartCoroutine(DestroyEffect(gameObject, _lifeTime));
         }
 
         private void CreateHitEffect()
@@ -49,8 +48,8 @@ namespace ZombieRun.Entities.Weapon
             if (_hitEffect == null)
                 return;
 
-            var effect = Instantiate(_hitEffect.prefab, transform.position, transform.rotation, null);
-            StartCoroutine(DestroyEffect(effect, _hitEffect.lifeTime));
+            var hitObj = LeanPool.Spawn(_hitEffect.prefab, transform.position, transform.rotation, null);
+            LeanPool.Despawn(hitObj, _hitEffect.lifeTime);
         }
 
         private void CreateTrail()
@@ -58,13 +57,7 @@ namespace ZombieRun.Entities.Weapon
             if (_trailPrefab == null)
                 return;
 
-            Instantiate(_trailPrefab, transform.position, Quaternion.identity, transform);
-        }
-
-        private IEnumerator DestroyEffect(GameObject obj, float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            Destroy(obj);
+            LeanPool.Spawn(_trailPrefab, transform.position, transform.rotation, transform);
         }
     }
 }

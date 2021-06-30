@@ -16,7 +16,6 @@ namespace ZombieRun.Core
         private static void Init()
         {
             SceneManager.LoadScene(PreloadSceneName);
-            //LoadScene(PreloadSceneName);
         }
 
         private void Awake()
@@ -30,7 +29,6 @@ namespace ZombieRun.Core
                 return;
 
             SceneChanger.Instance.FadeToScene(name);
-            //SceneManager.LoadScene(name, mode);
         }
     }
 }
