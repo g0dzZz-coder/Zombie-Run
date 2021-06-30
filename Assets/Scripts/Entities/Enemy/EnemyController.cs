@@ -3,33 +3,32 @@ using UnityEngine.AI;
 
 namespace ZombieRun.Entities
 {
-    using Player;
     using Misc;
-    using System.Collections;
+    using Player;
 
     [RequireComponent(typeof(Collider))]
     public class EnemyController : EntityControllerBase<EnemyData>
     {
         [SerializeField] private EnemyView _view = null;
+        [SerializeField] private Health _health = null;
         [SerializeField] private NavMeshAgent _agent = null;
         [SerializeField] private DetectionTrigger _trigger = null;
-
-        public float Health { get; private set; }
 
         private Transform _target;
 
         private void Start()
         {
-            Health = Data.health;
-
-            _agent.speed = Data.movement.moveSpeed.value;
+            _agent.speed = Data.MoveSpeed;
             transform.LookAt(Player.Instance.Root);
+
+            _view.Init(this);
+
+            _health.Init(Data.health);
+            _health.DamageTaked += _view.OnDamageTaked;
 
             _trigger.Setup(Data.detectionRadius);
             _trigger.Detected += SetTarget;
             _trigger.Undetected += RemoveTarget;
-
-            _view.Init(this);
         }
 
         private void Update()
@@ -46,14 +45,6 @@ namespace ZombieRun.Entities
             _trigger.Undetected -= RemoveTarget;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent(out StackableCharacterController character))
-            {
-                Attack(character);
-            }
-        }
-
         public void SetTarget(Transform target)
         {
             _target = target;
@@ -64,16 +55,6 @@ namespace ZombieRun.Entities
         {
             _target = null;
             _view.OnRunEnded();
-        }
-
-        private void Attack(StackableCharacterController target)
-        {
-            target.Die();
-        }
-
-        public void Die()
-        {
-            Destroy(gameObject);
         }
     }
 }

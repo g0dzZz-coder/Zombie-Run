@@ -9,5 +9,8 @@ namespace ZombieRun.Entities
         public int health = 10;
         public MovementSettings movement = new MovementSettings();
         public float detectionRadius = 5f;
+
+        public float MoveSpeed => movement.moveSpeed.value;
+        public float TurnSpeed => movement.turnSpeed;
     }
 }

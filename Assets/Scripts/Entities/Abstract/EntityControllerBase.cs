@@ -1,8 +1,14 @@
+using System;
 using UnityEngine;
 
 namespace ZombieRun.Entities
 {
-    public abstract class EntityControllerBase<T> : MonoBehaviour where T : EntityData
+    public interface IEntityController
+    {
+        //event Action Dead;
+    }
+
+    public abstract class EntityControllerBase<T> : MonoBehaviour, IEntityController where T : EntityData
     {
         [SerializeField] private T _data = null;
 

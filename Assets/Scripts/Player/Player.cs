@@ -48,18 +48,11 @@ namespace ZombieRun.Player
             CharactersChanged?.Invoke(Characters);
 
             if (Characters.Count == 0)
+            {
+                RemoveAllCharacters();
                 GameLogic.Instance.EndGame(false);
+            }
         }
-
-        public void RemoveAllCharacters()
-        {
-            foreach (var character in Characters)
-                Destroy(character.gameObject);
-
-            Characters.Clear();
-            CharactersChanged?.Invoke(Characters);
-        }
-
         public void SetPosition(Vector3 position)
         {
             Root.position = position;
@@ -68,6 +61,15 @@ namespace ZombieRun.Player
         private void Init()
         {
             _stackRoot.Init(this, _gameData.stackingRadius);
+        }
+
+        private void RemoveAllCharacters()
+        {
+            foreach (var character in Characters)
+                Destroy(character.gameObject);
+
+            Characters.Clear();
+            CharactersChanged?.Invoke(Characters);
         }
     }
 }

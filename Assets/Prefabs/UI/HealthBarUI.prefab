@@ -455,6 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _root: {fileID: 1941217072709835205}
   _animationDuration: 0.1
+  _health: {fileID: 0}
   _slider: {fileID: 8976220181561006277}
 --- !u!114 &3457680737075937442
 MonoBehaviour:

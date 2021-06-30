@@ -3,23 +3,37 @@ using UnityEngine.UI;
 
 namespace ZombieRun.UI
 {
+    using Entities;
+
     public class HealthBarUI : UIElement
     {
+        [SerializeField] private Health _health = null;
         [SerializeField] private Slider _slider = null;
 
         private Transform _camera;
+
+        private void Start()
+        {
+            _camera = Camera.main.transform;
+            Root.GetComponent<Canvas>().worldCamera = Camera.main;
+            _slider.maxValue = _health.MaxHealth;
+
+            UpdateProgressFill(_health.CurrentHealth);
+        }
 
         private void LateUpdate()
         {
             RotateToCamera();
         }
 
-        public void Init(float currenthHealth, float maxHealth)
+        private void OnEnable()
         {
-            Root.GetComponent<Canvas>().worldCamera = Camera.main;
-            _slider.maxValue = maxHealth;
+            _health.HealthChanged += value => UpdateProgressFill(value);
+        }
 
-            UpdateProgressFill(currenthHealth);
+        private void OnDisable()
+        {
+            _health.HealthChanged -= value => UpdateProgressFill(value);
         }
 
         public void UpdateProgressFill(float value)
@@ -27,10 +41,7 @@ namespace ZombieRun.UI
             _slider.value = value;
         }
 
-        protected override void OnEnabled() 
-        {
-            _camera = Camera.main.transform;
-        }
+        protected override void OnEnabled() { }
 
         protected override void OnDisabled() { }
 

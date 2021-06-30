@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abab9f1204aae6e4cae2e5df3ad26cc2, type: 3}
-  m_Name: Sample Weapon
+  m_Script: {fileID: 11500000, guid: 5a450dfaaac7ec74d93835355269103a, type: 3}
+  m_Name: Hit
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5515946111238186377, guid: 47a44c161e6c1264d83f4395416927db, type: 3}
-  fireRate: 100
-  accuracy: 0.8
-  damage: 5
-  range: 5
+  prefab: {fileID: 6009708109956359488, guid: b9bbf841907ed4d47977a4cb88a2823e, type: 3}
+  lifeTime: 2

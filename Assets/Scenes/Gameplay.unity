@@ -13717,7 +13717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _root: {fileID: 1445052405}
-  _levelGroup: {fileID: 11400000, guid: 08a3032249f908d458554e1214197df6, type: 2}
+  _data: {fileID: 11400000, guid: dca651654500879498d5c023705d84d0, type: 2}
   _onGameStarted: {fileID: 11400000, guid: b172dfec3c0b97f43a3ed7152393b471, type: 2}
   _onGameEnded: {fileID: 11400000, guid: b3a587880eec6be41af0c78720160d87, type: 2}
 --- !u!4 &1445052405
@@ -15738,6 +15738,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3471526505527293698, guid: 004b46ed80aa1a545ba5f4feb51b7b52, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3471526506020200017, guid: 004b46ed80aa1a545ba5f4feb51b7b52, type: 3}
       propertyPath: m_Name
       value: PauseMenu
@@ -15757,6 +15761,10 @@ PrefabInstance:
     - target: {fileID: 3471526506020200019, guid: 004b46ed80aa1a545ba5f4feb51b7b52, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376353107118342202, guid: 004b46ed80aa1a545ba5f4feb51b7b52, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 004b46ed80aa1a545ba5f4feb51b7b52, type: 3}

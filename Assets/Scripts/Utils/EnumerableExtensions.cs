@@ -29,5 +29,26 @@ namespace ZombieRun.Utils
 
             return closest;
         }
+
+        public static List<T> GetComponents<T, K>(this IEnumerable<K> enumerable) where T : Component where K: Component
+        {
+            if (enumerable == null)
+                throw new ArgumentNullException(nameof(enumerable));
+
+            var result = new List<T>();
+
+            foreach (K element in enumerable)
+            {
+                if (element == null)
+                    continue;
+
+                if (element.TryGetComponent(out T component) == false)
+                    continue;
+
+                result.Add(component);
+            }
+
+            return result;
+        }
     }
 }

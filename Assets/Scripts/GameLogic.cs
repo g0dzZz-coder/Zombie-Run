@@ -9,12 +9,13 @@ namespace ZombieRun
     public class GameLogic : MonoSingleton<GameLogic>
     {
         [SerializeField] private Transform _root = null;
-        [SerializeField] private LevelGroup _levelGroup = null;
+        [SerializeField] private GameData _data;
 
         [Header("Events")]
         [SerializeField] private GameEvent _onGameStarted = null;
         [SerializeField] private GameEvent _onGameEnded = null;
 
+        public GameData Data => _data;
         public bool IsStarted { get; private set; }
         public Level CurrentLevel { get; private set; }
 
@@ -38,12 +39,15 @@ namespace ZombieRun
 
         private void LoadNextLevel()
         {
-            var nextLevel = _levelGroup.GetNextLevel();
+            var nextLevel = _data.Levels.GetNextLevel();
             LoadLevel(nextLevel);
         }
 
         private void LoadLevel(LevelData data)
         {
+            //if (CurrentLevel)
+            //    Destroy(CurrentLevel.gameObject);
+
             for (var i = 0; i < _root.childCount; i++)
                 Destroy(_root.GetChild(i).gameObject);
 
