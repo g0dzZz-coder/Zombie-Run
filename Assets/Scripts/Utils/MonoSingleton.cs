@@ -21,11 +21,18 @@ namespace ZombieRun.Utils
 
         private void Awake()
         {
+            instancesInScene++;
+
+            if (Init(Instance))
+                instance = (T)this;
+
             OnAwake();
         }
 
         private void Start()
         {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
             OnStart();
         }
 
@@ -44,18 +51,9 @@ namespace ZombieRun.Utils
                 instance = null;
         }
 
-        protected virtual void OnAwake()
-        {
-            instancesInScene++;
+        protected virtual void OnAwake() { }
 
-            if (Init(Instance))
-                instance = (T)this;
-        }
-
-        protected virtual void OnStart()
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
+        protected virtual void OnStart() { }
 
         protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {

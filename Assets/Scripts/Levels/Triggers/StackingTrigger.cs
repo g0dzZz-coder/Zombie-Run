@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ZombieRun.Misc
 {
-    using Entities;
+    using Entities.Characters;
     using Player;
 
     [RequireComponent(typeof(SphereCollider))]
@@ -15,7 +15,7 @@ namespace ZombieRun.Misc
             if (_player == null)
                 return;
 
-            if (other.TryGetComponent(out StackableCharacterController character))
+            if (other.TryGetComponent(out Character character))
             {
                 _player.AddToGroup(character);
             }

@@ -10,7 +10,7 @@ namespace ZombieRun.Core
         public const string PreloadSceneName = "Preload";
 
         [Scene]
-        [SerializeField] private string nextSceneName = "Menu";
+        [SerializeField] private string _nextSceneName = "Menu";
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         private static void Init()
@@ -20,7 +20,7 @@ namespace ZombieRun.Core
 
         private void Awake()
         {
-            LoadScene(nextSceneName, LoadSceneMode.Additive);
+            LoadScene(_nextSceneName, LoadSceneMode.Additive);
         }
 
         private static void LoadScene(string name, LoadSceneMode mode = LoadSceneMode.Single)

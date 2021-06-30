@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZombieRun.Player
 {
+    using Entities.Characters;
     using Input;
-    using Entities;
 
     [RequireComponent(typeof(IInputProvider))]
     public class PlayerMovementController : MonoBehaviour
@@ -19,7 +18,7 @@ namespace ZombieRun.Player
         private void Start()
         {
             _inputProvider = GetComponent<IInputProvider>();
-            StartRun(_player.Characters);
+            StartRun();
         }
 
         private void OnEnable()
@@ -40,30 +39,30 @@ namespace ZombieRun.Player
             var direction = _inputProvider.GetDirection();
             Move(direction);
 
-            foreach (StackableCharacterController target in _player.Characters)
+            foreach (Character target in _player.Characters)
             {
-                target.Rotate(direction);
+                target.SetDirection(direction);
             }
         }
 
-        public void StartRun(List<StackableCharacterController> targets)
+        public void StartRun()
         {
-            foreach (StackableCharacterController target in targets)
-            {
-                target.SetTarget(_player.Root);
-            }
-
+            SetTarget(_player.Root);
             _isRunning = true;
         }
 
-        public void StopRun(List<StackableCharacterController> targets)
+        public void StopRun()
         {
-            foreach (StackableCharacterController target in targets)
-            {
-                target.SetTarget(null);
-            }
-
+            SetTarget(null);
             _isRunning = false;
+        }
+
+        public void SetTarget(Transform target)
+        {
+            foreach (Character character in _player.Characters)
+            {
+                character.SetTarget(target);
+            }
         }
 
         public void Move(Vector3 direction)

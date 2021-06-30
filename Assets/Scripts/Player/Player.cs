@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ZombieRun.Player
 {
-    using Entities;
+    using Entities.Characters;
     using Misc;
     using Utils;
 
@@ -14,20 +14,14 @@ namespace ZombieRun.Player
         [SerializeField] private GameData _gameData = null;
         [SerializeField] private StackingTrigger _stackRoot = null;
 
-        public List<StackableCharacterController> Characters { get; private set; } = new List<StackableCharacterController>();
+        public List<Character> Characters { get; private set; } = new List<Character>();
 
         public PlayerData Data => _data;
         public Transform Root => _stackRoot.transform;
 
-        public event Action<List<StackableCharacterController>> CharactersChanged;
+        public event Action CharactersChanged;
 
-        private void Awake()
-        {
-            OnAwake();
-            Init();
-        }
-
-        public void AddToGroup(StackableCharacterController teammate)
+        public void AddToGroup(Character teammate)
         {
             if (Characters.Contains(teammate))
                 return;
@@ -36,16 +30,16 @@ namespace ZombieRun.Player
             teammate.OnStacked(this);
 
             Characters.Add(teammate);
-            CharactersChanged?.Invoke(Characters);
+            CharactersChanged?.Invoke();
         }
 
-        public void RemoveFromGroup(StackableCharacterController character)
+        public void RemoveFromGroup(Character character)
         {
             if (Characters.Contains(character) == false)
                 return;
 
             Characters.Remove(character);
-            CharactersChanged?.Invoke(Characters);
+            CharactersChanged?.Invoke();
 
             if (Characters.Count == 0)
             {
@@ -58,18 +52,18 @@ namespace ZombieRun.Player
             Root.position = position;
         }
 
-        private void Init()
-        {
-            _stackRoot.Init(this, _gameData.stackingRadius);
-        }
-
-        private void RemoveAllCharacters()
+        public void RemoveAllCharacters()
         {
             foreach (var character in Characters)
                 Destroy(character.gameObject);
 
             Characters.Clear();
-            CharactersChanged?.Invoke(Characters);
+            CharactersChanged?.Invoke();
+        }
+
+        protected override void OnAwake()
+        {
+            _stackRoot.Init(this, _gameData.stackingRadius);
         }
     }
 }

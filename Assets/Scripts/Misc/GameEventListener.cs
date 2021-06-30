@@ -5,22 +5,22 @@ namespace ZombieRun.Misc
 {
     public class GameEventListener : MonoBehaviour
     {
-        public GameEvent Event;
-        public UnityEvent Response;
+        [SerializeField] private GameEvent _event;
+        [SerializeField] private UnityEvent _response;
 
         private void OnEnable()
         {
-            Event.Register(this);
+            _event.Register(this);
         }
 
         private void OnDisable()
         {
-            Event.Unregister(this);
+            _event.Unregister(this);
         }
 
         public void RaiseEvent()
         {
-            Response.Invoke();
+            _response.Invoke();
         }
     }
 }

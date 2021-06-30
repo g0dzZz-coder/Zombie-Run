@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a450dfaaac7ec74d93835355269103a, type: 3}
+  m_Name: Character Dead
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3217621563925404247, guid: b0734ff0fbd500f45bd1d71698abba57, type: 3}
+  lifeTime: 2

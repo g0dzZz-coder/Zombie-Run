@@ -4,15 +4,13 @@ using UnityEngine;
 namespace ZombieRun.Entities.Weapon
 {
     using Misc;
+    using Enemies;
 
     [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour
     {
         [Range(0f, 100f)]
         [SerializeField] private float _velocity = 50f;
-        [Range(1f, 10f)]
-        [SerializeField] private float _lifeTime = 5f;
-
         [SerializeField] private GameObject _trailPrefab = null;
         [SerializeField] private Effect _hitEffect = null;
 
@@ -24,12 +22,13 @@ namespace ZombieRun.Entities.Weapon
             if (((1 << collision.gameObject.layer) & _targetLayers) == 0)
                 return;
 
-            if (collision.gameObject.TryGetComponent(out Health health) == false)
+            if (collision.gameObject.TryGetComponent(out EnemyHealth health) == false)
                 return;
 
             health.TakeDamage(_damage);
             CreateHitEffect();
-            Destroy(gameObject);
+
+            LeanPool.Despawn(gameObject);
         }
 
         public void Init(LayerMask layers, int damage)

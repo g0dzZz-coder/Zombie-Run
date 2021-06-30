@@ -1,16 +1,23 @@
 using UnityEngine;
 
-namespace ZombieRun.Entities
+namespace ZombieRun.Entities.Enemies
 {
+    using UI;
+
     public class EnemyView : EntityViewBase
     {
         [SerializeField] private Renderer _renderer = null;
+        [SerializeField] private HealthBarUI _healthBar = null;
 
-        private EnemyController _controller;
-
-        public void Init(EnemyController controller)
+        public void Init(Enemy enemy)
         {
-            _controller = controller;
+            SetMaterial(enemy.Data.material);
+            _healthBar.Init(enemy.Data.health);
+        }
+
+        public void OnHealthChanged(int currentHealth)
+        {
+            _healthBar.UpdateProgressFill(currentHealth);
         }
 
         public void OnDamageTaked()

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c939c8e3a3716ea47b67a3634d0faf78, type: 3}
-  m_Name: Zombie
+  m_Name: Slow Zombie
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: e826d4e6cc74d8b4e85b5e8b7498205a, type: 2}
   health: 10
   movement:
-    moveSpeed: {fileID: 11400000, guid: 9b4ab36a341b71c4289a3719cbd1af71, type: 2}
+    moveSpeed: {fileID: 11400000, guid: 3f4f98081c5595645ad803bac0f607a5, type: 2}
     turnSpeed: 0.1
   detectionRadius: 5

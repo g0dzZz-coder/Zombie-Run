@@ -177,7 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effd366ac018d4642b63a1fecd22419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitButton: {fileID: 0}
+  _root: {fileID: 0}
+  _animationDuration: 0.5
+  _exitButton: {fileID: 0}
 --- !u!1 &59346492
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,8 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afea8aaccf7d0348bdbd4373c9eebef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScene: Gameplay
-  startButton: {fileID: 0}
+  _gameScene: Gameplay
+  _startButton: {fileID: 2045052993}
 --- !u!1 &204751173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,7 +1775,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.03529412, g: 0.2509804, b: 0.45490196, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

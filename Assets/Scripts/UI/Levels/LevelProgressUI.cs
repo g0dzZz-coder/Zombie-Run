@@ -21,7 +21,7 @@ namespace ZombieRun.UI
 
         private void LateUpdate()
         {
-            if (_level == null)
+            if (_level == null || enabled == false)
                 return;
 
             var distance = _level.GetRemainingDistance();
@@ -34,15 +34,17 @@ namespace ZombieRun.UI
             UpdateProgressFill(progressValue);
         }
 
+
         protected override void OnEnabled()
         {
             _level = GameLogic.Instance.CurrentLevel;
             _fullDistance = _level.GetRemainingDistance();
-
-            UpdateProgressFill(0f);
         }
 
-        protected override void OnDisabled() { }
+        protected override void OnDisabled() 
+        {
+            UpdateProgressFill(0f);
+        }
 
         private void UpdateProgressFill(float value)
         {

@@ -6,24 +6,24 @@ namespace ZombieRun.UI
     public class MainMenu : MonoBehaviour
     {
         [Scene]
-        [SerializeField] private string gameScene = string.Empty;
-        [SerializeField] private Button startButton = null;
+        [SerializeField] private string _gameScene = "Gameplay";
+        [SerializeField] private Button _startButton = null;
 
         private void OnEnable()
         {
-            if (startButton)
-                startButton.onClick.AddListener(OnStartButtonPressed);
+            if (_startButton)
+                _startButton.onClick.AddListener(OnStartButtonPressed);
         }
 
         private void OnDisable()
         {
-            if (startButton)
-                startButton.onClick.RemoveListener(OnStartButtonPressed);
+            if (_startButton)
+                _startButton.onClick.RemoveListener(OnStartButtonPressed);
         }
 
         public void OnStartButtonPressed()
         {
-            SceneChanger.Instance.FadeToScene(gameScene);
+            SceneChanger.Instance.FadeToScene(_gameScene);
         }
     }
 }

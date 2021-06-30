@@ -1,25 +1,13 @@
 using System;
-using UnityEngine;
 
-namespace ZombieRun.Entities
+namespace ZombieRun.Entities.Enemies
 {
-    using Misc;
-
-    public class Health : MonoBehaviour
+    public class EnemyHealth : EnemyBehaviorBase
     {
-        [SerializeField] private Effect _deathEffect = null;
-
-        public int MaxHealth { get; private set; }
         public int CurrentHealth { get; private set; }
 
         public event Action<int> HealthChanged;
         public event Action DamageTaked;
-
-        public void Init(int startHealth)
-        {
-            MaxHealth = startHealth;
-            CurrentHealth = MaxHealth;
-        }
 
         public void TakeDamage(int damageAmount)
         {
@@ -38,14 +26,23 @@ namespace ZombieRun.Entities
             }
         }
 
-        private void Die()
+        public void Die()
         {
             Destroy(gameObject);
         }
 
-        private void CreateDeathEffect()
+        protected override void OnInited()
         {
+            CurrentHealth = Source.Data.health;
 
+            DamageTaked += Source.View.OnDamageTaked;
+            HealthChanged += Source.View.OnHealthChanged;
+        }
+
+        private void OnDestroy()
+        {
+            DamageTaked -= Source.View.OnDamageTaked;
+            HealthChanged -= Source.View.OnHealthChanged;
         }
     }
 }

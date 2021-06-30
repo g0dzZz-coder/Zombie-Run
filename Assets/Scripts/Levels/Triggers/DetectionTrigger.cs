@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZombieRun.Misc
 {
-    using Entities;
+    using Entities.Characters;
 
     public class DetectionTrigger : Trigger<SphereCollider>
     {
@@ -14,7 +14,7 @@ namespace ZombieRun.Misc
 
         protected override void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out StackableCharacterController character))
+            if (other.TryGetComponent(out Character character))
             {
                 if (character.Player == null)
                     return;

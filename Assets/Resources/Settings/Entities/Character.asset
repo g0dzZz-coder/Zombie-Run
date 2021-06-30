@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bcd622f5c0dd14cac12203cd9079ee, type: 3}
   m_Name: Character
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4949358117031626941, guid: cd8dbad4bfdc9fc4c88434e891fed5bf, type: 3}
-  weapon: {fileID: 0}
   material: {fileID: 2100000, guid: 418123d123f3fc7429a0438b0f9c8c14, type: 2}
+  prefab: {fileID: 7741969963255743558, guid: cd8dbad4bfdc9fc4c88434e891fed5bf, type: 3}
+  health: 1
+  weapon: {fileID: 11400000, guid: acc517d75de08d44490db5711dd5a399, type: 2}

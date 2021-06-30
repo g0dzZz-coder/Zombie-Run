@@ -7,7 +7,7 @@ namespace ZombieRun.UI
 
     public class StartMenu : UIElement
     {
-        [SerializeField] private GameEvent onClicked = null;
+        [SerializeField] private GameEvent _gameStartingEvent = null;
         [SerializeField] private Button _button = null;
 
         private void Awake()
@@ -17,12 +17,21 @@ namespace ZombieRun.UI
 
         protected override void OnEnabled()
         {
-            _button.onClick.AddListener(onClicked.Invoke);
+            if (_button)
+                _button.onClick.AddListener(OnStartButtonPressed);
         }
 
         protected override void OnDisabled()
         {
-            _button.onClick.RemoveListener(onClicked.Invoke);
+            if (_button)
+                _button.onClick.RemoveListener(OnStartButtonPressed);
+        }
+
+        public void OnStartButtonPressed()
+        {
+            Hide();
+
+            _gameStartingEvent?.Invoke();
         }
     }
 }

@@ -20,13 +20,13 @@ namespace ZombieRun
 
         [Header("Gameplay")]
         public float stackingRadius = 3f;
-        [SerializeField] private MovementSettings _movement;
+        public MovementSettings movement;
 
         [Header("Input")]
         public FloatVariable controlSensitivity = null;
 
-        public float MoveSpeed => _movement.moveSpeed.value;
-        public float TurnSpeed => _movement.turnSpeed;
+        public float MoveSpeed => movement.moveSpeed.value;
+        public float TurnSpeed => movement.turnSpeed;
         public LevelGroup Levels => _levels;
     }
 }

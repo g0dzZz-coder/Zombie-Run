@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZombieRun.Misc
 {
-    [CreateAssetMenu(fileName = "GameEvent", menuName = "Misc/Game Event", order = 51)]
+    [CreateAssetMenu(fileName = "Game Event", menuName = "Misc/Game Event", order = 51)]
     public class GameEvent : ScriptableObject
     {
         private readonly HashSet<GameEventListener> _listeners = new HashSet<GameEventListener>();

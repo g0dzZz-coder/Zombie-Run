@@ -3,28 +3,23 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-namespace ZombieRun.Entities
+namespace ZombieRun.Entities.Characters
 {
+    using Enemies;
     using Utils;
     using Weapon;
 
-    [RequireComponent(typeof(StackableCharacterController))]
-    public class StackableCharacterAttack : MonoBehaviour
+    [RequireComponent(typeof(CharacterController))]
+    public class CharacterAttack : CharacterBehaviorBase
     {
         [SerializeField] private WeaponData _weapon = null;
         [SerializeField] private Transform _firePoint = null;
         [SerializeField] private LayerMask _enemyLayer = 0;
 
-        private StackableCharacterController _controller = null;
+        private Character _controller = null;
 
         private float _nextFire = 0f;
         private float _fireDelay;
-
-        private void Awake()
-        {
-            _controller = GetComponent<StackableCharacterController>();
-            _fireDelay = 1f / (_weapon.fireRate / 60f);
-        }
 
         private void Update()
         {
@@ -44,17 +39,23 @@ namespace ZombieRun.Entities
             Attack();
         }
 
+        protected override void OnInited()
+        {
+            _controller = GetComponent<Character>();
+            _fireDelay = 1f / (_weapon.fireRate / 60f);
+        }
+
         private void Attack()
         {
             var bullet = LeanPool.Spawn(_weapon.bulletPrefab, _firePoint.position, _firePoint.rotation);
             bullet.Init(_enemyLayer, _weapon.damage);
         }
 
-        private EnemyController GetClosestEnemy()
+        private Enemy GetClosestEnemy()
         {
             var colliders = Physics.OverlapSphere(transform.position, _weapon.range, _enemyLayer);
             Array.Sort(colliders, new DistanceComparer(transform));
-            var enemies = colliders.GetComponents<EnemyController, Collider>();
+            var enemies = colliders.GetComponents<Enemy, Collider>();
 
             return enemies.FirstOrDefault();
         }

@@ -1100,8 +1100,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3471526506020200019}
   - component: {fileID: 3471526506020200016}
-  - component: {fileID: 3945930992338236530}
   - component: {fileID: 4778791274009764128}
+  - component: {fileID: 3945930992338236530}
   m_Layer: 0
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -1141,7 +1141,7 @@ MonoBehaviour:
   _animationDuration: 0.25
   _pauseButtonRoot: {fileID: 2351485579179713609}
   _resumeButton: {fileID: 0}
---- !u!114 &3945930992338236530
+--- !u!114 &4778791274009764128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1153,8 +1153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553447c7a4f8ef840bb3d1640dd83cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b172dfec3c0b97f43a3ed7152393b471, type: 2}
-  Response:
+  _event: {fileID: 11400000, guid: b172dfec3c0b97f43a3ed7152393b471, type: 2}
+  _response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3471526506020200016}
@@ -1169,7 +1169,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4778791274009764128
+--- !u!114 &3945930992338236530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1181,10 +1181,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553447c7a4f8ef840bb3d1640dd83cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b3a587880eec6be41af0c78720160d87, type: 2}
-  Response:
+  _event: {fileID: 11400000, guid: b3a587880eec6be41af0c78720160d87, type: 2}
+  _response:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 3471526506020200016}
+        m_TargetAssemblyTypeName: ZombieRun.UI.UIElement, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 3471526506020200016}
         m_TargetAssemblyTypeName: ZombieRun.UI.PauseMenu, Assembly-CSharp
         m_MethodName: HidePauseButton

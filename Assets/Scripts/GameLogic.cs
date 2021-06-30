@@ -9,7 +9,7 @@ namespace ZombieRun
     public class GameLogic : MonoSingleton<GameLogic>
     {
         [SerializeField] private Transform _root = null;
-        [SerializeField] private GameData _data;
+        [SerializeField] private GameData _data = null;
 
         [Header("Events")]
         [SerializeField] private GameEvent _onGameStarted = null;
@@ -21,14 +21,10 @@ namespace ZombieRun
 
         public void StartGame()
         {
-            LoadNextLevel();
-            OnGameStarted();
-        }
+            PrepareLevel();
 
-        public void RestartGame()
-        {
-            CurrentLevel.Restart();
-            OnGameStarted();
+            IsStarted = true;
+            _onGameStarted?.Invoke();
         }
 
         public void EndGame(bool win)
@@ -45,20 +41,34 @@ namespace ZombieRun
 
         private void LoadLevel(LevelData data)
         {
-            //if (CurrentLevel)
-            //    Destroy(CurrentLevel.gameObject);
-
-            for (var i = 0; i < _root.childCount; i++)
-                Destroy(_root.GetChild(i).gameObject);
+            DestroyAllLevels();
 
             CurrentLevel = Instantiate(data.prefab, _root.transform);
             CurrentLevel.Init(data);
         }
 
-        private void OnGameStarted()
+        private void PrepareLevel()
         {
-            IsStarted = true;
-            _onGameStarted?.Invoke();
+            if (CurrentLevel == null)
+            {
+                LoadNextLevel();
+                return;
+            }
+
+            Player.Player.Instance.RemoveAllCharacters();
+            CurrentLevel.Restart();
+        }
+
+        private void DestroyAllLevels()
+        {
+            for (var i = 0; i < _root.childCount; i++)
+                Destroy(_root.GetChild(i).gameObject);
+        }
+
+        private void DestroyCurrentLevel()
+        {
+            if (CurrentLevel)
+                Destroy(CurrentLevel.gameObject);
         }
     }
 }

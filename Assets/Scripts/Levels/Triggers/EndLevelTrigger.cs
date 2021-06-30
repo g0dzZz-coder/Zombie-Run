@@ -2,15 +2,22 @@ using UnityEngine;
 
 namespace ZombieRun.Misc
 {
-    using Entities;
+    using Entities.Characters;
+    using Player;
 
     public class EndLevelTrigger : Trigger<Collider>
     {
         protected override void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out StackableCharacterController character))
+            //if (other.TryGetComponent(out Character character))
+            //{
+            //    character.SetTarget(null);
+            //    GameLogic.Instance.EndGame(true);
+            //}
+
+            if (other.TryGetComponent(out PlayerMovementController player))
             {
-                character.StopRun();
+                player.StopRun();
                 GameLogic.Instance.EndGame(true);
             }
         }

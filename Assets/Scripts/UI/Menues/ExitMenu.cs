@@ -7,7 +7,7 @@ namespace ZombieRun.UI
 
     public class ExitMenu : UIElement
     {
-        [SerializeField] private Button exitButton = null;
+        [SerializeField] private Button _exitButton = null;
 
         public void OnExitButtonPressed()
         {
@@ -16,14 +16,14 @@ namespace ZombieRun.UI
 
         protected override void OnEnabled()
         {
-            if (exitButton)
-                exitButton.onClick.AddListener(OnExitButtonPressed);
+            if (_exitButton)
+                _exitButton.onClick.AddListener(OnExitButtonPressed);
         }
 
         protected override void OnDisabled()
         {
-            if (exitButton)
-                exitButton.onClick.RemoveListener(OnExitButtonPressed);
+            if (_exitButton)
+                _exitButton.onClick.RemoveListener(OnExitButtonPressed);
         }
     }
 }

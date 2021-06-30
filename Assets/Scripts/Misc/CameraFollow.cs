@@ -8,8 +8,10 @@ namespace ZombieRun.Misc
     public class CameraFollow : MonoBehaviour
     {
         [SerializeField] private Camera _camera;
+        [Range(0f, 1f)]
         [SerializeField] private float _smoothSpeed = 0.125f;
-        [SerializeField] private float _offset = 15f;
+        [Range(5f, 30f)]
+        [SerializeField] private float _offset = 17.5f;
 
         private void LateUpdate()
         {

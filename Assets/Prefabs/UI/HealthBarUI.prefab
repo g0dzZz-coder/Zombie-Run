@@ -455,7 +455,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _root: {fileID: 1941217072709835205}
   _animationDuration: 0.1
-  _health: {fileID: 0}
   _slider: {fileID: 8976220181561006277}
 --- !u!114 &3457680737075937442
 MonoBehaviour:
@@ -469,8 +468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553447c7a4f8ef840bb3d1640dd83cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b172dfec3c0b97f43a3ed7152393b471, type: 2}
-  Response:
+  _event: {fileID: 11400000, guid: b172dfec3c0b97f43a3ed7152393b471, type: 2}
+  _response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2530403335698493739}
@@ -483,7 +482,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2469719463292412260
 MonoBehaviour:
@@ -497,8 +496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553447c7a4f8ef840bb3d1640dd83cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b3a587880eec6be41af0c78720160d87, type: 2}
-  Response:
+  _event: {fileID: 11400000, guid: b3a587880eec6be41af0c78720160d87, type: 2}
+  _response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2530403335698493739}
