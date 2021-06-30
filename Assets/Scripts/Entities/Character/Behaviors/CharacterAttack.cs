@@ -2,6 +2,7 @@ using Lean.Pool;
 using System;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ZombieRun.Entities.Characters
 {
@@ -20,6 +21,7 @@ namespace ZombieRun.Entities.Characters
 
         private float _nextFire = 0f;
         private float _fireDelay;
+        private float _bulletSpread;
 
         private void Update()
         {
@@ -43,12 +45,15 @@ namespace ZombieRun.Entities.Characters
         {
             _controller = GetComponent<Character>();
             _fireDelay = 1f / (_weapon.fireRate / 60f);
+            _bulletSpread = 1f - _weapon.accuracy;
         }
 
         private void Attack()
         {
             var bullet = LeanPool.Spawn(_weapon.bulletPrefab, _firePoint.position, _firePoint.rotation);
-            bullet.Init(_enemyLayer, _weapon.damage);
+            var direction = CalculateDirection();
+
+            bullet.Init(_weapon.damage, direction, _enemyLayer);
         }
 
         private Enemy GetClosestEnemy()
@@ -58,6 +63,17 @@ namespace ZombieRun.Entities.Characters
             var enemies = colliders.GetComponents<Enemy, Collider>();
 
             return enemies.FirstOrDefault();
+        }
+
+        private Vector3 CalculateDirection()
+        {
+            var direction = transform.forward;
+
+            direction.x += Random.Range(-_bulletSpread, _bulletSpread);
+            direction.y += Random.Range(-_bulletSpread, _bulletSpread);
+            direction.z += Random.Range(-_bulletSpread, _bulletSpread);
+
+            return direction;
         }
 
         private void LookAt(Transform target)

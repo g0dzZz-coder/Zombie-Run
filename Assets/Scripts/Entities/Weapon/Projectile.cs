@@ -31,13 +31,13 @@ namespace ZombieRun.Entities.Weapon
             LeanPool.Despawn(gameObject);
         }
 
-        public void Init(LayerMask layers, int damage)
+        public void Init(int damage, Vector3 direction, LayerMask layers)
         {
             _targetLayers = layers;
             _damage = damage;
 
             var rigidbody = GetComponent<Rigidbody>();
-            rigidbody.AddForce(transform.rotation * Vector3.forward * _velocity, ForceMode.Impulse);
+            rigidbody.AddForce(direction * _velocity, ForceMode.Impulse);
 
             CreateTrail();
         }
