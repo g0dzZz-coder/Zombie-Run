@@ -19,6 +19,9 @@ namespace ZombieRun.Entities.Enemies
 
         private void OnDestroy()
         {
+            if (IsInited == false)
+                return;
+
             Source.StunStarted -= OnStunStarted;
             Source.StunEnded -= OnStunEnded;
         }

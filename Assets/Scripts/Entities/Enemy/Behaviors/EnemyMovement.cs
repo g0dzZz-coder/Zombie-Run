@@ -15,11 +15,20 @@ namespace ZombieRun.Entities.Enemies
 
         private void Update()
         {
-            MoveToTarget();
+            if (_target == null)
+            {
+                StopRun();
+                return;
+            }
+
+            MoveTowards(_target);
         }
 
         private void OnDestroy()
         {
+            if (IsInited == false)
+                return;
+
             StopAllCoroutines();
 
             _trigger.Detected -= StartRun;
@@ -39,15 +48,9 @@ namespace ZombieRun.Entities.Enemies
             Source.StunStarted += OnStunStarted;
         }
 
-        private void MoveToTarget()
+        private void MoveTowards(Transform target)
         {
-            if (_target == null)
-            {
-                StopRun();
-                return;
-            }
-
-            _agent.SetDestination(_target.position);
+            _agent.SetDestination(target.position);
         }
 
         private void StartRun(Transform target)

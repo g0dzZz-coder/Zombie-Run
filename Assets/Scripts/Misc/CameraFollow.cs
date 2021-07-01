@@ -4,14 +4,17 @@ using UnityEngine;
 namespace ZombieRun.Misc
 {
     using Player;
+    using Utils;
 
-    public class CameraFollow : MonoBehaviour
+    public class CameraFollow : MonoSingleton<CameraFollow>
     {
         [SerializeField] private Camera _camera;
         [Range(0f, 1f)]
         [SerializeField] private float _smoothSpeed = 0.125f;
         [Range(5f, 30f)]
         [SerializeField] private float _offset = 17.5f;
+
+        public Camera Camera => _camera;
 
         private void LateUpdate()
         {

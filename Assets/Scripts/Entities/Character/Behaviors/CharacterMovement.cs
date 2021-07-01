@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace ZombieRun.Entities.Characters
 {
+    using Misc;
+
     public class CharacterMovement : CharacterBehaviorBase
     {
         [SerializeField] private CharacterController _controller = null;
@@ -24,6 +26,9 @@ namespace ZombieRun.Entities.Characters
 
         private void OnDestroy()
         {
+            if (IsInited == false)
+                return;
+
             Source.TargetChanged -= OnTargetChanged;
             Source.DirectionChanged -= Rotate;
         }
@@ -39,7 +44,7 @@ namespace ZombieRun.Entities.Characters
 
         private void Rotate(Vector3 direction)
         {
-            _targetAngle = direction.z * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+            _targetAngle = direction.z * Mathf.Rad2Deg + CameraFollow.Instance.transform.eulerAngles.y;
             var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetAngle, ref _turnSmoothVelocity, (1f - _settings.turnSpeed));
             transform.rotation = Quaternion.Euler(0, angle, 0);
         }

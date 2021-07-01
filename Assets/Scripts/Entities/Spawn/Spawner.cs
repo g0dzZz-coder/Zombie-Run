@@ -9,35 +9,33 @@ namespace ZombieRun.Entities.Spawn
     {
         [SerializeField] private GameObject[] _prefabs = null;
         [SerializeField] private Transform _root = null;
-        [SerializeField] private Transform _rootOfSpawnPositions = null;
+        [SerializeField] private Transform _rootOfSpawnPoints = null;
         [Range(0, 50)]
-        [SerializeField] private int _requiredAmount;
+        [SerializeField] private int _maxAmount = 30;
 
         public GameObject LastSpawned { get; private set; }
-        public Transform RootOfSpawnPositions => _rootOfSpawnPositions;
+        public Transform RootOfSpawnPositions => _rootOfSpawnPoints;
 
         private List<GameObject> _spawnedObjects = new List<GameObject>();
-        private Transform[] _spawnPositions = null;
-        private int _lastIndex;
+        private Transform[] _spawnPoints = null;
 
         public void Respawn()
         {
             DestroyAll();
             FindSpawnPositions();
 
-            for (_lastIndex = 0; _lastIndex < _requiredAmount; _lastIndex++)
+            for (var i = 0; i < _maxAmount; i++)
             {
-                if (_lastIndex > _spawnPositions.Length - 1)
+                if (i > _spawnPoints.Length - 1)
                     return;
 
-                Spawn();
+                Spawn(_spawnPoints[i]);
             }
         }
 
-        private void Spawn()
+        private void Spawn(Transform spawnPoint)
         {
-            var obj = Instantiate(_prefabs.GetRandom(), _root);
-            obj.transform.position = _spawnPositions[_lastIndex].position;
+            var obj = Instantiate(_prefabs.GetRandom(), spawnPoint.position, spawnPoint.rotation, _root);
 
             LastSpawned = obj;
             _spawnedObjects.Add(LastSpawned);
@@ -50,16 +48,14 @@ namespace ZombieRun.Entities.Spawn
 
             foreach (GameObject obj in _spawnedObjects)
                 Destroy(obj);
-
-            _lastIndex = 0;
         }
 
         private void FindSpawnPositions()
         {
-            _spawnPositions = new Transform[_rootOfSpawnPositions.childCount];
-            for (var i = 0; i < _spawnPositions.Length; i++)
+            _spawnPoints = new Transform[_rootOfSpawnPoints.childCount];
+            for (var i = 0; i < _spawnPoints.Length; i++)
             {
-                _spawnPositions[i] = _rootOfSpawnPositions.GetChild(i);
+                _spawnPoints[i] = _rootOfSpawnPoints.GetChild(i);
             }
         }
     }

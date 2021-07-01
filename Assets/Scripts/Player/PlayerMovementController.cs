@@ -4,6 +4,7 @@ namespace ZombieRun.Player
 {
     using Entities.Characters;
     using Input;
+    using Misc;
 
     [RequireComponent(typeof(IInputProvider))]
     public class PlayerMovementController : MonoBehaviour
@@ -63,7 +64,7 @@ namespace ZombieRun.Player
 
         public void Move(Vector3 direction)
         {
-            var targetAngle = direction.z * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+            var targetAngle = direction.z * Mathf.Rad2Deg + CameraFollow.Instance.transform.eulerAngles.y;
             var motion = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             _controller.Move(motion.normalized * _data.MoveSpeed * Time.deltaTime);
