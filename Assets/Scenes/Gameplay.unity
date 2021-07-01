@@ -11971,6 +11971,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 3134021090485329241, guid: f36f2c279b99ab74fa78931eb19c0607, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3134021090485329243, guid: f36f2c279b99ab74fa78931eb19c0607, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -26845,7 +26849,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 368464426717542281, guid: 5e77592925633d84cb7a07341916c79c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5e77592925633d84cb7a07341916c79c, type: 3}
 --- !u!1001 &2318639692017622293
 PrefabInstance:
