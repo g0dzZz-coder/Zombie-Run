@@ -30,6 +30,8 @@ namespace ZombieRun.Entities.Enemies
         protected override void OnInited()
         {
             _agent.speed = Source.Data.MoveSpeed;
+            Source.View.OnSpeedChanged(Source.Data.MoveSpeed);
+
             _trigger.Setup(Source.Data.detectionRadius);
 
             _trigger.Detected += StartRun;

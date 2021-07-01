@@ -8,10 +8,6 @@ namespace ZombieRun.Entities
     public class CharacterData : EntityData
     {
         public CharacterController prefab = null;
-
-        [Range(1, 3)]
-        public int health = 1;
-
         public WeaponData weapon = null;
     }
 }

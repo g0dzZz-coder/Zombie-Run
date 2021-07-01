@@ -16,7 +16,10 @@ namespace ZombieRun.Entities.Characters
 
         private void Update()
         {
-            Move();
+            if (_target == null)
+                return;
+
+            MoveTowards(_target);
         }
 
         private void OnDestroy()
@@ -28,6 +31,7 @@ namespace ZombieRun.Entities.Characters
         protected override void OnInited()
         {
             _settings = GameLogic.Instance.Data.movement;
+            Source.View.OnSpeedChanged(_settings.moveSpeed.value);
 
             Source.TargetChanged += OnTargetChanged;
             Source.DirectionChanged += Rotate;
@@ -40,12 +44,9 @@ namespace ZombieRun.Entities.Characters
             transform.rotation = Quaternion.Euler(0, angle, 0);
         }
 
-        private void Move()
+        private void MoveTowards(Transform target)
         {
-            if (_target == null)
-                return;
-
-            var offset = _target.position - transform.position;
+            var offset = target.position - transform.position;
             if (offset.magnitude < _stopDistance)
                 return;
 

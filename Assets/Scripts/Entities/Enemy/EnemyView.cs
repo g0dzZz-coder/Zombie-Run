@@ -35,6 +35,11 @@ namespace ZombieRun.Entities.Enemies
             animator.SetBool("IsRun", false);
         }
 
+        public void OnSpeedChanged(float value)
+        {
+            animator.SetFloat("Speed", value);
+        }
+
         private void SetMaterial(Material material)
         {
             _renderer.material = material;
