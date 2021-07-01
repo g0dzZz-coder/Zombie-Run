@@ -10,9 +10,7 @@ namespace ZombieRun.Entities
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out CharacterHealth character))
-            {
                 character.Die();
-            }
         }
     }
 }

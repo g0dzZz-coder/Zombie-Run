@@ -1943,7 +1943,7 @@ GameObject:
   - component: {fileID: 7954990855090856612}
   - component: {fileID: 2108682311449889767}
   - component: {fileID: 1534731847305080241}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: DetectionTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

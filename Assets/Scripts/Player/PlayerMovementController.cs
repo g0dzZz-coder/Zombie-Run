@@ -40,9 +40,7 @@ namespace ZombieRun.Player
             Move(direction);
 
             foreach (Character target in _player.Characters)
-            {
                 target.SetDirection(direction);
-            }
         }
 
         public void StartRun()
@@ -60,9 +58,7 @@ namespace ZombieRun.Player
         public void SetTarget(Transform target)
         {
             foreach (Character character in _player.Characters)
-            {
                 character.SetTarget(target);
-            }
         }
 
         public void Move(Vector3 direction)

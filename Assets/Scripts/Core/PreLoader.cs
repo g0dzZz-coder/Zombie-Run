@@ -5,6 +5,10 @@ namespace ZombieRun.Core
 {
     using UI;
 
+    /// <summary>
+    /// First scene preloader.
+    /// Needed to store singletons without using DontDestroyOnLoad().
+    /// </summary>
     public class PreLoader : MonoBehaviour
     {
         public const string PreloadSceneName = "Preload";
@@ -15,15 +19,16 @@ namespace ZombieRun.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         private static void Init()
         {
+            // Comment out this line to disable the forced launch of the preload scene.
             SceneManager.LoadScene(PreloadSceneName);
         }
 
         private void Awake()
         {
-            LoadScene(_nextSceneName, LoadSceneMode.Additive);
+            LoadScene(_nextSceneName);
         }
 
-        private static void LoadScene(string name, LoadSceneMode mode = LoadSceneMode.Single)
+        private static void LoadScene(string name)
         {
             if (string.IsNullOrWhiteSpace(name) || SceneManager.GetActiveScene().name == name)
                 return;

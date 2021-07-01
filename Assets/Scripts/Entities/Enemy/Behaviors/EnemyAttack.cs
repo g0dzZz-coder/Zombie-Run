@@ -6,12 +6,27 @@ namespace ZombieRun.Entities.Enemies
 
     public class EnemyAttack : EnemyBehaviorBase
     {
+        private bool _isCanAttack;
+
         private void OnTriggerEnter(Collider other)
         {
+            if (_isCanAttack == false)
+                return;
+
             if (other.TryGetComponent(out CharacterHealth character))
-            {
                 Attack(character);
-            }
+        }
+
+        private void OnDestroy()
+        {
+            Source.StunStarted -= OnStunStarted;
+            Source.StunEnded -= OnStunEnded;
+        }
+
+        protected override void OnInited()
+        {
+            Source.StunStarted += OnStunStarted;
+            Source.StunEnded += OnStunEnded;
         }
 
         private void Attack(CharacterHealth target)
@@ -19,6 +34,14 @@ namespace ZombieRun.Entities.Enemies
             target.Die();
         }
 
-        protected override void OnInited() { }
+        private void OnStunStarted()
+        {
+            _isCanAttack = false;
+        }
+
+        private void OnStunEnded()
+        {
+            _isCanAttack = true;
+        }
     }
 }

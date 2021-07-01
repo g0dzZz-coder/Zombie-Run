@@ -4,17 +4,16 @@ using UnityEngine;
 namespace ZombieRun.Levels
 {
     using Entities.Spawn;
-    using Misc;
     using Player;
-    using Utils;
 
     public class Level : MonoBehaviour
     {
-        [SerializeField] private Transform _start = null;
-        [SerializeField] private EndLevelTrigger _endLevelTrigger = null;
+        [SerializeField] private LevelCheckpoints _checkpoints = default;
         [SerializeField] private List<Spawner> _spawners = new List<Spawner>();
+        [SerializeField] private bool _rebuildOnStart = true;
 
         public LevelData Data { get; private set; }
+        public LevelCheckpoints Checkpoints => _checkpoints;
 
         public void Init(LevelData data)
         {
@@ -24,24 +23,13 @@ namespace ZombieRun.Levels
 
         public void Restart()
         {
+            Player.Instance.SetPosition(_checkpoints.start.position);
+
+            if (_rebuildOnStart == false)
+                return;
+
             foreach (Spawner spawner in _spawners)
                 spawner.Respawn();
-
-            Player.Instance.SetPosition(_start.position);
-        }
-
-        public float GetRemainingDistance()
-        {
-            try
-            {
-                var endPosition = _endLevelTrigger.transform.position;
-                var closestCharacterPosition = Player.Instance.Characters.GetClosest(endPosition).transform.position;
-                return (endPosition - closestCharacterPosition).sqrMagnitude;
-            }
-            catch
-            {
-                return float.MaxValue;
-            }
         }
     }
 }

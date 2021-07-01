@@ -15,10 +15,7 @@ namespace ZombieRun.Entities.Enemies
 
         private void Update()
         {
-            if (_target == null)
-                return;
-
-            _agent.SetDestination(_target.position);
+            MoveToTarget();
         }
 
         private void OnDestroy()
@@ -27,7 +24,7 @@ namespace ZombieRun.Entities.Enemies
 
             _trigger.Detected -= SetTarget;
             _trigger.Undetected -= RemoveTarget;
-            Source.Stuned -= () => StartCoroutine(OnStuned());
+            Source.StunStarted -= OnStunStarted;
         }
 
         public void SetTarget(Transform target)
@@ -44,8 +41,7 @@ namespace ZombieRun.Entities.Enemies
 
             _trigger.Detected += SetTarget;
             _trigger.Undetected += RemoveTarget;
-
-            Source.Stuned += () => StartCoroutine(OnStuned());
+            Source.StunStarted += OnStunStarted;
         }
 
         private void RemoveTarget(Transform target)
@@ -56,13 +52,26 @@ namespace ZombieRun.Entities.Enemies
             Source.View.OnRunEnded();
         }
 
-        private IEnumerator OnStuned()
+        private void MoveToTarget()
+        {
+            if (_target == null)
+                return;
+
+            _agent.SetDestination(_target.position);
+        }
+
+        private void OnStunStarted()
+        {
+            StartCoroutine(WaitForEndOfStun());
+        }
+
+        private IEnumerator WaitForEndOfStun()
         {
             _agent.speed = 0;
-
             yield return new WaitForSeconds(Source.Data.stunDuration);
-
             _agent.speed = Source.Data.MoveSpeed;
+
+            Source.StunEnded?.Invoke();
         }
     }
 }

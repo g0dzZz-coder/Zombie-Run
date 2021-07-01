@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7346409990da38d4e95e03194c46f14d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heigth: {x: 5, y: 10}
+  _heigth: {x: 3, y: 7}
 --- !u!114 &1556188630300274618
 MonoBehaviour:
   m_ObjectHideFlags: 0

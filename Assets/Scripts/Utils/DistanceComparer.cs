@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace ZombieRun.Utils
 {
+    /// <summary>
+    /// Comparer for sorting game objects by distance.
+    /// </summary>
     public class DistanceComparer : IComparer
     {
         private Transform _compareTransform;

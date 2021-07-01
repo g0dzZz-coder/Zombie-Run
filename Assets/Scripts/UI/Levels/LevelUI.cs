@@ -28,7 +28,7 @@ namespace ZombieRun.UI
         {
             if (data)
             {
-                _levelNameText.text = data.id;
+                _levelNameText.text = data.Name;
                 LeanTween.alphaCanvas(_canvasGroup, 1f, _animationDuration);
 
                 return;

@@ -5,6 +5,7 @@ namespace ZombieRun.Misc
 {
     using Entities.Characters;
 
+    [RequireComponent(typeof(SphereCollider))]
     public class DetectionTrigger : Trigger<SphereCollider>
     {
         public event Action<Transform> Detected;

@@ -16,9 +16,7 @@ namespace ZombieRun.Misc
                 return;
 
             if (other.TryGetComponent(out Character character))
-            {
                 _player.AddToGroup(character);
-            }
         }
 
         public void Init(Player player, float radius)

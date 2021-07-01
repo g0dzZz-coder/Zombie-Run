@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace ZombieRun.Misc
 {
+    [RequireComponent(typeof(Collider))]
     public abstract class Trigger<T> : MonoBehaviour where T : Collider
     {
         protected T Collider

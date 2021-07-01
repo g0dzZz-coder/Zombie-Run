@@ -4,10 +4,19 @@ using UnityEngine.UI;
 namespace ZombieRun.UI
 {
     using Levels;
+    using Player;
+    using Utils;
 
     public class LevelProgressUI : UIElement
     {
+        public enum Method
+        {
+            Root,
+            ClosestCharacter
+        }
+
         [SerializeField] private Slider _slider = null;
+        [SerializeField] private Method _methodOfCalculation = Method.ClosestCharacter;
 
         private float _fullDistance;
         private float _lastDistance;
@@ -19,12 +28,12 @@ namespace ZombieRun.UI
             Disable();
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             if (_level == null || enabled == false)
                 return;
 
-            var distance = _level.GetRemainingDistance();
+            var distance = GetRemainingDistance();
             if (distance == _lastDistance)
                 return;
 
@@ -38,10 +47,10 @@ namespace ZombieRun.UI
         protected override void OnEnabled()
         {
             _level = GameLogic.Instance.CurrentLevel;
-            _fullDistance = _level.GetRemainingDistance();
+            _fullDistance = GetRemainingDistance();
         }
 
-        protected override void OnDisabled() 
+        protected override void OnDisabled()
         {
             UpdateProgressFill(0f);
         }
@@ -49,6 +58,23 @@ namespace ZombieRun.UI
         private void UpdateProgressFill(float value)
         {
             _slider.value = value;
+        }
+
+        private float GetRemainingDistance()
+        {
+            try
+            {
+                var endPosition = _level.Checkpoints.end.transform.position;
+                var currentPosition = _methodOfCalculation == Method.Root
+                    ? Player.Instance.Root.position
+                    : Player.Instance.Characters.GetClosest(endPosition).transform.position;
+
+                return (endPosition - currentPosition).sqrMagnitude;
+            }
+            catch
+            {
+                return float.MaxValue;
+            }
         }
     }
 }

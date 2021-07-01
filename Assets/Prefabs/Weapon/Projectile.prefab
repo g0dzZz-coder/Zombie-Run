@@ -160,9 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _velocity: 50
-  _lifeTime: 5
-  _trailPrefab: {fileID: 4051796395550805896, guid: 8a1763b0fa734f547b36e389e49b7339, type: 3}
   _hitEffect: {fileID: 11400000, guid: 493f903e042640042ac05bf377a90915, type: 2}
+  _trailPrefab: {fileID: 4051796395550805896, guid: 8a1763b0fa734f547b36e389e49b7339, type: 3}
 --- !u!54 &5515946111238186376
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,9 +175,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!65 &8392485474855389618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -190,7 +189,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6024674771729472750
 MonoBehaviour:

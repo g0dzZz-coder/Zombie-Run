@@ -15,7 +15,7 @@ namespace ZombieRun.Levels
                 return GetFirstLevel();
 
             var lastLevelId = PlayerPrefs.GetString("lastLevel");
-            var lastLevel = _levels.SingleOrDefault(x => x.id == lastLevelId);
+            var lastLevel = _levels.SingleOrDefault(x => x.Id == lastLevelId);
             var nextLevelId = _levels.IndexOf(lastLevel) + 1;
 
             if (nextLevelId > _levels.Count - 1 || _levels[nextLevelId] == null)
@@ -26,7 +26,7 @@ namespace ZombieRun.Levels
 
         public void SetLastLevelPlayed(LevelData level)
         {
-            PlayerPrefs.SetString("lastLevel", level.id);
+            PlayerPrefs.SetString("lastLevel", level.Id);
         }
 
         private LevelData GetFirstLevel()

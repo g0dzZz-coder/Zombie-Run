@@ -13,7 +13,8 @@ namespace ZombieRun.Entities.Enemies
 
         public EnemyView View => _view;
 
-        public Action Stuned { get; set; }
+        public Action StunStarted { get; set; }
+        public Action StunEnded { get; set; }
 
         private void Start()
         {

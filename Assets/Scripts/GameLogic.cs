@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace ZombieRun
 {
@@ -19,9 +20,12 @@ namespace ZombieRun
         public bool IsStarted { get; private set; }
         public Level CurrentLevel { get; private set; }
 
+        public event Action<bool> GameEnded;
+
         public void StartGame()
         {
             PrepareLevel();
+            _data.Levels.SetLastLevelPlayed(CurrentLevel.Data);
 
             IsStarted = true;
             _onGameStarted?.Invoke();
@@ -30,7 +34,9 @@ namespace ZombieRun
         public void EndGame(bool win)
         {
             IsStarted = false;
+
             _onGameEnded?.Invoke();
+            GameEnded?.Invoke(win);
         }
 
         private void LoadNextLevel()
@@ -42,6 +48,9 @@ namespace ZombieRun
         private void LoadLevel(LevelData data)
         {
             DestroyAllLevels();
+
+            if (data == null)
+                throw new ArgumentNullException("LevelData is null");
 
             CurrentLevel = Instantiate(data.prefab, _root.transform);
             CurrentLevel.Init(data);
