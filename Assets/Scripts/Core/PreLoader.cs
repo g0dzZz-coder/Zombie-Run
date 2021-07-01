@@ -16,7 +16,7 @@ namespace ZombieRun.Core
         [Scene]
         [SerializeField] private string _nextSceneName = "Menu";
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        [RuntimeInitializeOnLoadMethod]
         private static void Init()
         {
             // Comment out this line to disable the forced launch of the preload scene.

@@ -24,6 +24,11 @@ namespace ZombieRun
 
         private bool _isLastLevelPassed = true;
 
+        protected override void OnAwake()
+        {
+            GetNextLevel();
+        }
+
         public void StartGame()
         {
             if (IsStarted)

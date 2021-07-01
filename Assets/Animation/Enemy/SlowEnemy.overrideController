@@ -6,6 +6,14 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Animator Override Controller
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Name: SlowEnemy
+  m_Controller: {fileID: 9100000, guid: 0d2bca4fc32bcc241a9baeff972d57db, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 1b1e52cc26ef3d3499d711b4ca2cf45e, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 4f94a6a885111b94fa5b8281af529b2a, type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 11eb1f2e21e2b0244b7ca6ff0c46cbb1, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 11eb1f2e21e2b0244b7ca6ff0c46cbb1, type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 9a07ac7b5cffd0b45a1a1177e3589c0f, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 9a07ac7b5cffd0b45a1a1177e3589c0f, type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 1fc3a4b9ca05a384aac0aa0d91a5ed60, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: c9ae43d6a09e858409ab17a675688727, type: 3}

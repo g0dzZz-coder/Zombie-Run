@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 612732072395266356}
+  _event: {fileID: 11400000, guid: edd566088a472844d983056f05008f8c, type: 2}
   _duration: 0.25
 --- !u!1 &1656118432936058280
 GameObject:

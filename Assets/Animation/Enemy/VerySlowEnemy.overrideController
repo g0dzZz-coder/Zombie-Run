@@ -7,5 +7,13 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: VerySlowEnemy
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 0d2bca4fc32bcc241a9baeff972d57db, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 1b1e52cc26ef3d3499d711b4ca2cf45e, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: a2014cbc2a8084742adb5b7e6e9af702, type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 11eb1f2e21e2b0244b7ca6ff0c46cbb1, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 11eb1f2e21e2b0244b7ca6ff0c46cbb1, type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 9a07ac7b5cffd0b45a1a1177e3589c0f, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 9a07ac7b5cffd0b45a1a1177e3589c0f, type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 1fc3a4b9ca05a384aac0aa0d91a5ed60, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: a24d54f0f37807d41a16bf05dcc8e034, type: 3}
