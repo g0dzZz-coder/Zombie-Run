@@ -78,9 +78,8 @@ namespace ZombieRun.Entities.Characters
 
         private void LookAt(Transform target)
         {
-            transform.LookAt(target.transform);
-            //var rotation = Quaternion.LookRotation(target.transform.position - transform.position);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * GameLogic.Instance.Data.TurnSpeed);
+            var position = new Vector3(target.position.x, transform.position.y, target.position.z);
+            transform.LookAt(position);
         }
     }
 }

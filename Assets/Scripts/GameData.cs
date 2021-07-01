@@ -10,6 +10,7 @@ namespace ZombieRun
     public struct MovementSettings
     {
         public FloatVariable moveSpeed;
+        [Range(0f, 1f)]
         public float turnSpeed;
     }
 
@@ -19,6 +20,7 @@ namespace ZombieRun
         [SerializeField] private LevelGroup _levels;
 
         [Header("Gameplay")]
+        [Range(1f, 5f)]
         public float stackingRadius = 3f;
         public MovementSettings movement;
 

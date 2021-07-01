@@ -27,7 +27,7 @@ namespace ZombieRun.Utils
                 if (element == null)
                     continue;
 
-                var distance = Vector3.Distance(element.transform.position, position);
+                var distance = (element.transform.position - position).sqrMagnitude;
                 if (distance < lastClosestDistance)
                 {
                     lastClosestDistance = distance;
