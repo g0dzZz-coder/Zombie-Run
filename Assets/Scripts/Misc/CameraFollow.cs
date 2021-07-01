@@ -11,7 +11,7 @@ namespace ZombieRun.Misc
         [SerializeField] private Camera _camera;
         [Range(0f, 1f)]
         [SerializeField] private float _smoothSpeed = 0.125f;
-        [Range(5f, 30f)]
+        [Range(5f, 50f)]
         [SerializeField] private float _offset = 17.5f;
 
         public Camera Camera => _camera;

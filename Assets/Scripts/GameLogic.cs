@@ -1,93 +1,56 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 namespace ZombieRun
 {
+    using Core;
     using Levels;
-    using Misc;
     using Utils;
 
     public class GameLogic : MonoSingleton<GameLogic>
     {
-        [SerializeField] private Transform _root = null;
         [SerializeField] private GameData _data = null;
 
-        [Header("Events")]
-        [SerializeField] private GameEvent _onGameStarted = null;
-        [SerializeField] private GameEvent _onGameEnded = null;
-
         public GameData Data => _data;
-        public bool IsStarted { get; private set; }
-        public Level CurrentLevel { get; private set; }
 
-        public event Action<bool> GameEnded;
-
+        private LevelData _currentLevel = null;
         private bool _isLastLevelPassed = true;
 
-        protected override void OnAwake()
+        public void OnLevelStarted(LevelData level)
         {
-            GetNextLevel();
+            _currentLevel = level;
+            _data.Levels.SetLastLevelPlayed(_currentLevel);
         }
 
-        public void StartGame()
+        public void OnLevelEnded(bool win)
         {
-            if (IsStarted)
-                return;
-
-            Player.Player.Instance.RemoveAllCharacters();
-
-            CurrentLevel = GetNextLevel();
-            CurrentLevel.Restart();
-
-            _data.Levels.SetLastLevelPlayed(CurrentLevel.Data);
-
-            _onGameStarted?.Invoke();
-            IsStarted = true;
-        }
-
-        public void EndGame(bool win)
-        {
-            if (IsStarted == false)
-                return;
-
-            IsStarted = false;
             _isLastLevelPassed = win;
-
-            _onGameEnded?.Invoke();
-            GameEnded?.Invoke(win);
         }
 
-        private Level GetNextLevel()
+        public void LoadNextLevel()
         {
-            if (_isLastLevelPassed == false)
-                return CurrentLevel;
-
-            var nextLevelData = _data.Levels.GetNextLevel();
-            if (CurrentLevel && nextLevelData == CurrentLevel.Data)
-                return CurrentLevel;
-
-            var nextLevel = LoadLevel(nextLevelData);
-
-            return nextLevel;
+            var nextLevelData = GetNextLevel();
+            LoadLevel(nextLevelData);
         }
 
-        private Level LoadLevel(LevelData data)
+        private void LoadLevel(LevelData data)
         {
-            DestroyAllLevels();
-
             if (data == null)
                 throw new ArgumentNullException("LevelData is null");
 
-            var level = Instantiate(data.prefab, _root.transform);
-            level.Init(data);
-
-            return level;
+            SceneChanger.Instance.FadeToScene(data.Scene, false);
         }
 
-        private void DestroyAllLevels()
+        private LevelData GetNextLevel()
         {
-            for (var i = 0; i < _root.childCount; i++)
-                Destroy(_root.GetChild(i).gameObject);
+            if (_isLastLevelPassed == false)
+                return _currentLevel;
+
+            var nextLevelData = _data.Levels.GetNextLevel();
+            if (nextLevelData == _data)
+                return _currentLevel;
+
+            return nextLevelData;
         }
     }
 }

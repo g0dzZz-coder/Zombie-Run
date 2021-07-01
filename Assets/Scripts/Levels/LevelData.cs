@@ -7,9 +7,11 @@ namespace ZombieRun.Levels
     {
         [SerializeField] private string _id = string.Empty;
         [SerializeField] private string _name = string.Empty;
-        public Level prefab = null;
+        [Scene]
+        [SerializeField] private string _scene = string.Empty;
 
         public string Id => _id;
         public string Name => _name;
+        public string Scene => _scene;
     }
 }

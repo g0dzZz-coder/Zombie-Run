@@ -21,7 +21,7 @@ namespace ZombieRun.UI
         private float _fullDistance;
         private float _lastDistance;
 
-        private Level _level = null;
+        private LevelLogic _level = null;
 
         private void Awake()
         {
@@ -46,7 +46,7 @@ namespace ZombieRun.UI
 
         protected override void OnEnabled()
         {
-            _level = GameLogic.Instance.CurrentLevel;
+            _level = LevelLogic.Instance;
             _fullDistance = GetRemainingDistance();
         }
 

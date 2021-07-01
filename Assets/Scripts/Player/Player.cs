@@ -5,6 +5,7 @@ using UnityEngine;
 namespace ZombieRun.Player
 {
     using Entities.Characters;
+    using Levels;
     using Misc;
     using Utils;
 
@@ -41,21 +42,12 @@ namespace ZombieRun.Player
             CharactersChanged?.Invoke();
 
             if (Characters.Count == 0)
-                GameLogic.Instance.EndGame(false);
+                LevelLogic.Instance.EndLevel(false);
         }
 
         public void SetPosition(Vector3 position)
         {
             Root.position = position;
-        }
-
-        public void RemoveAllCharacters()
-        {
-            foreach (Character character in Characters)
-                Destroy(character.gameObject);
-
-            Characters.Clear();
-            CharactersChanged?.Invoke();
         }
 
         protected override void OnAwake()

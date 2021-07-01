@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace ZombieRun.Core
 {
-    using UI;
+    using Misc;
 
     /// <summary>
     /// First scene preloader.

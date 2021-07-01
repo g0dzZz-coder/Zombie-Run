@@ -3,10 +3,12 @@ using UnityEngine.UI;
 
 namespace ZombieRun.UI
 {
+    using Levels;
+    using Core;
+
     public class MainMenu : MonoBehaviour
     {
-        [Scene]
-        [SerializeField] private string _gameScene = "Gameplay";
+        [SerializeField] private LevelGroup _levels = null;
         [SerializeField] private Button _startButton = null;
 
         private void OnEnable()
@@ -23,7 +25,8 @@ namespace ZombieRun.UI
 
         public void OnStartButtonPressed()
         {
-            SceneChanger.Instance.FadeToScene(_gameScene);
+            var nextLevel = _levels.GetNextLevel().Scene;
+            SceneChanger.Instance.FadeToScene(nextLevel);
         }
     }
 }

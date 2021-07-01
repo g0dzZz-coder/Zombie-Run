@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ZombieRun.Entities.Enemies
 {
-    using UI;
+    using UI.Entities;
 
     public class EnemyView : EntityViewBase
     {
@@ -18,6 +18,7 @@ namespace ZombieRun.Entities.Enemies
         public void OnHealthChanged(int currentHealth)
         {
             _healthBar.UpdateProgressFill(currentHealth);
+            _healthBar.Show();
         }
 
         public void OnDamageTaked()

@@ -33,6 +33,12 @@ namespace ZombieRun.Entities.Weapon
             if (_targetLayers.IsInLayerMask(other.gameObject) == false)
                 return;
 
+            if (other.gameObject.TryGetComponent(out Obstacle obstacle))
+            {
+                LeanPool.Despawn(gameObject);
+                return;
+            }
+
             if (other.gameObject.TryGetComponent(out EnemyHealth health))
                 OnHittingTheTarget(health);
         }

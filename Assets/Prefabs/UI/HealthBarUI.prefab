@@ -417,7 +417,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7207620786385216336}
   - component: {fileID: 2530403335698493739}
-  - component: {fileID: 3457680737075937442}
   - component: {fileID: 2469719463292412260}
   m_Layer: 0
   m_Name: HealthBarUI
@@ -456,34 +455,6 @@ MonoBehaviour:
   _root: {fileID: 1941217072709835205}
   _animationDuration: 0.1
   _slider: {fileID: 8976220181561006277}
---- !u!114 &3457680737075937442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5550165786572320319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 553447c7a4f8ef840bb3d1640dd83cbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: b172dfec3c0b97f43a3ed7152393b471, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2530403335698493739}
-        m_TargetAssemblyTypeName: ZombieRun.UI.UIElement, Assembly-CSharp
-        m_MethodName: Show
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2469719463292412260
 MonoBehaviour:
   m_ObjectHideFlags: 0

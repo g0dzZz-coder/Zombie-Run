@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 5515946110392384367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5515946109510744613}
   m_RootOrder: 0
@@ -141,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 5515946111238186378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 5515946109510744613}
   m_Father: {fileID: 0}
@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _velocity: 50
+  _maxLifetime: 3
   _hitEffect: {fileID: 11400000, guid: 493f903e042640042ac05bf377a90915, type: 2}
   _trailPrefab: {fileID: 4051796395550805896, guid: 8a1763b0fa734f547b36e389e49b7339, type: 3}
 --- !u!54 &5515946111238186376
@@ -189,7 +190,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6024674771729472750
 MonoBehaviour:

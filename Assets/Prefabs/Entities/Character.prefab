@@ -282,7 +282,7 @@ MonoBehaviour:
   _firePoint: {fileID: 7139368597428514965}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 384
 --- !u!95 &2894979125666960575
 Animator:
   serializedVersion: 3

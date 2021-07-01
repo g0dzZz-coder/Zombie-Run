@@ -4,6 +4,7 @@ using UnityEngine.UI;
 namespace ZombieRun.UI
 {
     using Core;
+    using Levels;
     using Input = UnityEngine.Input;
 
     public class PauseMenu : UIElement
@@ -25,7 +26,7 @@ namespace ZombieRun.UI
 
         public void TogglePause()
         {
-            if (GameLogic.Instance.IsStarted == false)
+            if (LevelLogic.Instance.IsStarted == false)
                 return;
 
             if (App.IsPaused)

@@ -3,6 +3,7 @@ using UnityEngine;
 namespace ZombieRun.Entities.Characters
 {
     using Misc;
+    using Levels;
 
     public class CharacterMovement : CharacterBehaviorBase
     {
