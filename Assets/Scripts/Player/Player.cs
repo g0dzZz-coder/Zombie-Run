@@ -11,7 +11,6 @@ namespace ZombieRun.Player
     public class Player : MonoSingleton<Player>
     {
         [SerializeField] private PlayerData _data = null;
-        [SerializeField] private GameData _gameData = null;
         [SerializeField] private StackingTrigger _stackRoot = null;
 
         public List<Character> Characters { get; private set; } = new List<Character>();
@@ -42,11 +41,9 @@ namespace ZombieRun.Player
             CharactersChanged?.Invoke();
 
             if (Characters.Count == 0)
-            {
-                RemoveAllCharacters();
                 GameLogic.Instance.EndGame(false);
-            }
         }
+
         public void SetPosition(Vector3 position)
         {
             Root.position = position;
@@ -54,7 +51,7 @@ namespace ZombieRun.Player
 
         public void RemoveAllCharacters()
         {
-            foreach (var character in Characters)
+            foreach (Character character in Characters)
                 Destroy(character.gameObject);
 
             Characters.Clear();
@@ -63,7 +60,7 @@ namespace ZombieRun.Player
 
         protected override void OnAwake()
         {
-            _stackRoot.Init(this, _gameData.stackingRadius);
+            _stackRoot.Init(this, GameLogic.Instance.Data.stackingRadius);
         }
     }
 }

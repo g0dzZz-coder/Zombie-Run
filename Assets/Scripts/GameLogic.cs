@@ -22,62 +22,67 @@ namespace ZombieRun
 
         public event Action<bool> GameEnded;
 
+        private bool _isLastLevelPassed = true;
+
         public void StartGame()
         {
-            PrepareLevel();
+            if (IsStarted)
+                return;
+
+            Player.Player.Instance.RemoveAllCharacters();
+
+            CurrentLevel = GetNextLevel();
+            CurrentLevel.Restart();
+
             _data.Levels.SetLastLevelPlayed(CurrentLevel.Data);
 
-            IsStarted = true;
             _onGameStarted?.Invoke();
+            IsStarted = true;
         }
 
         public void EndGame(bool win)
         {
+            if (IsStarted == false)
+                return;
+
             IsStarted = false;
+            _isLastLevelPassed = win;
 
             _onGameEnded?.Invoke();
             GameEnded?.Invoke(win);
         }
 
-        private void LoadNextLevel()
+        private Level GetNextLevel()
         {
-            var nextLevel = _data.Levels.GetNextLevel();
-            LoadLevel(nextLevel);
+            if (_isLastLevelPassed == false)
+                return CurrentLevel;
+
+            var nextLevelData = _data.Levels.GetNextLevel();
+            if (CurrentLevel && nextLevelData == CurrentLevel.Data)
+                return CurrentLevel;
+
+            var nextLevel = LoadLevel(nextLevelData);
+
+            return nextLevel;
         }
 
-        private void LoadLevel(LevelData data)
+        private Level LoadLevel(LevelData data)
         {
             DestroyAllLevels();
 
             if (data == null)
                 throw new ArgumentNullException("LevelData is null");
 
-            CurrentLevel = Instantiate(data.prefab, _root.transform);
-            CurrentLevel.Init(data);
-        }
+            var level = Instantiate(data.prefab, _root.transform);
+            level.Init(data);
 
-        private void PrepareLevel()
-        {
-            if (CurrentLevel == null)
-            {
-                LoadNextLevel();
-                return;
-            }
-
-            Player.Player.Instance.RemoveAllCharacters();
-            CurrentLevel.Restart();
+            return level;
         }
 
         private void DestroyAllLevels()
         {
             for (var i = 0; i < _root.childCount; i++)
                 Destroy(_root.GetChild(i).gameObject);
-        }
-
-        private void DestroyCurrentLevel()
-        {
-            if (CurrentLevel)
-                Destroy(CurrentLevel.gameObject);
         }
     }
 }

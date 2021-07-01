@@ -26,7 +26,6 @@ namespace ZombieRun
         public FloatVariable controlSensitivity = null;
 
         public float MoveSpeed => movement.moveSpeed.value;
-        public float TurnSpeed => movement.turnSpeed;
         public LevelGroup Levels => _levels;
     }
 }

@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a450dfaaac7ec74d93835355269103a, type: 3}
-  m_Name: Enemy Dead
+  m_Script: {fileID: 11500000, guid: 72c532b6845d35d438462f952fe3f84e, type: 3}
+  m_Name: Scene Changed
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5778746971285774251, guid: 5079a9255f0e72b48a8b52ed1318fe45, type: 3}
-  lifeTime: 2

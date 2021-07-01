@@ -11,7 +11,7 @@ namespace ZombieRun.Levels
 
         public LevelData GetNextLevel()
         {
-            if (PlayerPrefs.HasKey("lastLevel"))
+            if (PlayerPrefs.HasKey("lastLevel") == false)
                 return GetFirstLevel();
 
             var lastLevelId = PlayerPrefs.GetString("lastLevel");

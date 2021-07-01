@@ -6,7 +6,7 @@ namespace ZombieRun.Entities.Enemies
 
     public class EnemyAttack : EnemyBehaviorBase
     {
-        private bool _isCanAttack;
+        private bool _isCanAttack = true;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -31,7 +31,7 @@ namespace ZombieRun.Entities.Enemies
 
         private void Attack(CharacterHealth target)
         {
-            target.Die();
+            target.Die(transform.forward);
         }
 
         private void OnStunStarted()

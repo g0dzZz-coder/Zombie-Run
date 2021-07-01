@@ -221,7 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: a884c3a46d4888d4abc6f61742627d87, type: 2}
-  _gameData: {fileID: 11400000, guid: dca651654500879498d5c023705d84d0, type: 2}
   _view: {fileID: 6136376870616712291}
   _behaviors:
   - {fileID: 3129393801286223643}
@@ -254,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b08ea5885206b4fa8b7705d2cea470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stopDistance: 1.25
 --- !u!114 &1412476411330839976
 MonoBehaviour:
   m_ObjectHideFlags: 0

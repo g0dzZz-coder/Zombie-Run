@@ -13,6 +13,8 @@ namespace ZombieRun.Entities.Weapon
     {
         [Range(0f, 100f)]
         [SerializeField] private float _velocity = 50f;
+        [Range(1f, 5f)]
+        [SerializeField] private float _maxLifetime = 3f;
         [SerializeField] private Effect _hitEffect = null;
         [SerializeField] private GameObject _trailPrefab = null;
 
@@ -28,8 +30,6 @@ namespace ZombieRun.Entities.Weapon
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.gameObject.name);
-
             if (_targetLayers.IsInLayerMask(other.gameObject) == false)
                 return;
 
@@ -44,11 +44,12 @@ namespace ZombieRun.Entities.Weapon
             _targetLayers = layers;
 
             CreateTrail();
+            LeanPool.Despawn(gameObject, _maxLifetime);
         }
 
         private void OnHittingTheTarget(EnemyHealth health)
         {
-            health.TakeDamage(_damage);
+            health.TakeDamage(_damage, transform.forward);
             CreateHitEffect();
 
             LeanPool.Despawn(gameObject);

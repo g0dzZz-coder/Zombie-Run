@@ -18,7 +18,6 @@ namespace ZombieRun.Levels
         public void Init(LevelData data)
         {
             Data = data;
-            Restart();
         }
 
         public void Restart()

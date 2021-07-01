@@ -11,9 +11,9 @@ namespace ZombieRun.Entities
         [SerializeField] protected Animator animator = null;
         [SerializeField] private Effect _deathEffect = null;
 
-        public void OnDying()
+        public void OnDying(Vector3 direction)
         {
-            var effect = LeanPool.Spawn(_deathEffect.prefab, transform.position, transform.rotation);
+            var effect = LeanPool.Spawn(_deathEffect.prefab, transform.position, Quaternion.FromToRotation(Vector3.forward, direction));
             LeanPool.Despawn(effect, _deathEffect.lifeTime);
         }
     }

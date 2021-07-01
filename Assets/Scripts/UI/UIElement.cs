@@ -32,7 +32,7 @@ namespace ZombieRun.UI
 
         public void Hide()
         {
-            LeanTween.cancel(gameObject);
+            LeanTween.cancel(_lastTweenId);
 
             if (_root == null)
             {

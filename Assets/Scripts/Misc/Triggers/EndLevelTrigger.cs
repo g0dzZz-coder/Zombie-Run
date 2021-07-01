@@ -8,11 +8,14 @@ namespace ZombieRun.Misc
     {
         protected override void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out PlayerMovementController player))
-            {
-                player.StopRun();
-                GameLogic.Instance.EndGame(true);
-            }
+            if (GameLogic.Instance.IsStarted == false)
+                return;
+
+            if (other.TryGetComponent(out PlayerMovementController player) == false)
+                return;
+
+            player.StopRun();
+            GameLogic.Instance.EndGame(true);
         }
     }
 }

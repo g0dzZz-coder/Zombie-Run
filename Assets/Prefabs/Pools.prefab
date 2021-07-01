@@ -215,11 +215,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea08375da243a441b88d1e6b0713006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6662788178835917243, guid: 5079a9255f0e72b48a8b52ed1318fe45, type: 3}
+  prefab: {fileID: 5778746971285774251, guid: 5079a9255f0e72b48a8b52ed1318fe45, type: 3}
   notification: 3
   strategy: 0
-  preload: 0
-  capacity: 3
+  preload: 1
+  capacity: 5
   recycle: 1
   persist: 0
   stamp: 0

@@ -30,5 +30,11 @@ namespace ZombieRun.Entities.Enemies
                 behavior.Init(this);
             }
         }
+
+        public void OnDying(Vector3 hiDirection)
+        {
+            _view.OnDying(hiDirection);
+            Destroy(gameObject);
+        }
     }
 }

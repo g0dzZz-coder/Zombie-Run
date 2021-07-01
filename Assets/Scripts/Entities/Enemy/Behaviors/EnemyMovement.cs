@@ -22,16 +22,9 @@ namespace ZombieRun.Entities.Enemies
         {
             StopAllCoroutines();
 
-            _trigger.Detected -= SetTarget;
-            _trigger.Undetected -= RemoveTarget;
+            _trigger.Detected -= StartRun;
+            _trigger.Undetected -= StopRun;
             Source.StunStarted -= OnStunStarted;
-        }
-
-        public void SetTarget(Transform target)
-        {
-            _target = target;
-
-            Source.View.OnRunStarted();
         }
 
         protected override void OnInited()
@@ -39,25 +32,34 @@ namespace ZombieRun.Entities.Enemies
             _agent.speed = Source.Data.MoveSpeed;
             _trigger.Setup(Source.Data.detectionRadius);
 
-            _trigger.Detected += SetTarget;
-            _trigger.Undetected += RemoveTarget;
+            _trigger.Detected += StartRun;
+            _trigger.Undetected += StopRun;
             Source.StunStarted += OnStunStarted;
-        }
-
-        private void RemoveTarget(Transform target)
-        {
-            _target = null;
-            _agent.isStopped = true;
-
-            Source.View.OnRunEnded();
         }
 
         private void MoveToTarget()
         {
             if (_target == null)
+            {
+                StopRun();
                 return;
+            }
 
             _agent.SetDestination(_target.position);
+        }
+
+        private void StartRun(Transform target)
+        {
+            _agent.isStopped = false;
+            _target = target;
+            Source.View.OnRunStarted();
+        }
+
+        private void StopRun()
+        {
+            _target = null;
+            _agent.isStopped = true;
+            Source.View.OnRunEnded();
         }
 
         private void OnStunStarted()

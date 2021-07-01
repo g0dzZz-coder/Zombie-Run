@@ -9,29 +9,29 @@ namespace ZombieRun.Misc
     public class DetectionTrigger : Trigger<SphereCollider>
     {
         public event Action<Transform> Detected;
-        public event Action<Transform> Undetected;
+        public event Action Undetected;
 
         private Transform _lastDetected;
 
         protected override void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Character character))
-            {
-                if (character.Player == null)
-                    return;
+            if (other.TryGetComponent(out Character character) == false)
+                return;
 
-                _lastDetected = character.transform;
-                Detected?.Invoke(_lastDetected);
-            }
+            if (character.Player == null)
+                return;
+
+            _lastDetected = character.transform;
+            Detected?.Invoke(_lastDetected);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.transform == _lastDetected)
-            {
-                Undetected?.Invoke(_lastDetected);
-                _lastDetected = null;
-            }
+            if (other.transform != _lastDetected)
+                return;
+
+            Undetected?.Invoke();
+            _lastDetected = null;
         }
 
         public void Setup(float radius)

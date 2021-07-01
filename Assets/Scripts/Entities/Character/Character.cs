@@ -8,13 +8,11 @@ namespace ZombieRun.Entities.Characters
     [RequireComponent(typeof(CharacterController))]
     public class Character : EntityBase<CharacterData>
     {
-        [SerializeField] private GameData _gameData = null;
         [SerializeField] private CharacterView _view = null;
         [SerializeField] private CharacterBehaviorBase[] _behaviors = null;
 
         public Player Player { get; private set; }
         public CharacterView View => _view;
-        public MovementSettings MovementSettings => _gameData.movement;
 
         public event Action<Transform> TargetChanged;
         public event Action<Vector3> DirectionChanged;
@@ -46,10 +44,12 @@ namespace ZombieRun.Entities.Characters
             DirectionChanged?.Invoke(direction);
         }
 
-        public void OnDying()
+        public void OnDying(Vector3 hitDirection)
         {
             Player.Instance.RemoveFromGroup(this);
-            _view.OnDying();
+            _view.OnDying(hitDirection);
+
+            Destroy(gameObject);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace ZombieRun.Entities.Enemies
 {
@@ -9,12 +10,12 @@ namespace ZombieRun.Entities.Enemies
         public event Action<int> HealthChanged;
         public event Action DamageTaked;
 
-        public void TakeDamage(int damageAmount)
+        public void TakeDamage(int damage, Vector3 hitDirection)
         {
-            if (damageAmount < 0)
+            if (damage < 0)
                 return;
 
-            CurrentHealth -= damageAmount;
+            CurrentHealth -= damage;
 
             DamageTaked?.Invoke();
             HealthChanged?.Invoke(CurrentHealth);
@@ -22,13 +23,13 @@ namespace ZombieRun.Entities.Enemies
             if (CurrentHealth <= 0)
             {
                 CurrentHealth = 0;
-                Die();
+                Die(hitDirection);
             }
         }
 
-        public void Die()
+        public void Die(Vector3 hitDirection)
         {
-            Destroy(gameObject);
+            Source.OnDying(hitDirection);
         }
 
         protected override void OnInited()

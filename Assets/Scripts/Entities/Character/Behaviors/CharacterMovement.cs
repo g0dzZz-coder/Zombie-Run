@@ -4,6 +4,9 @@ namespace ZombieRun.Entities.Characters
 {
     public class CharacterMovement : CharacterBehaviorBase
     {
+        [Range(1f, 3f)]
+        [SerializeField] private float _stopDistance = 1f;
+
         private MovementSettings _settings;
         private float _turnSmoothVelocity;
         private float _targetAngle;
@@ -15,7 +18,7 @@ namespace ZombieRun.Entities.Characters
             if (_target == null)
                 return;
 
-            if (Vector3.Distance(transform.position, _target.position) < 1f)
+            if (Vector3.Distance(transform.position, _target.position) < _stopDistance)
                 return;
 
             Move();
@@ -29,7 +32,7 @@ namespace ZombieRun.Entities.Characters
 
         protected override void OnInited()
         {
-            _settings = Source.MovementSettings;
+            _settings = GameLogic.Instance.Data.movement;
 
             Source.TargetChanged += OnTargetChanged;
             Source.DirectionChanged += Rotate;

@@ -17,4 +17,5 @@ MonoBehaviour:
   movement:
     moveSpeed: {fileID: 11400000, guid: 9b4ab36a341b71c4289a3719cbd1af71, type: 2}
     turnSpeed: 0.1
-  detectionRadius: 5
+  detectionRadius: 6
+  stunDuration: 0.75
