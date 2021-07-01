@@ -253,7 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b08ea5885206b4fa8b7705d2cea470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stopDistance: 1
+  _controller: {fileID: 7741969963255743558}
+  _stopDistance: 1.25
 --- !u!114 &1412476411330839976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +315,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -346,7 +347,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}

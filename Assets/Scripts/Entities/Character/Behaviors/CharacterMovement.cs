@@ -2,12 +2,11 @@ using UnityEngine;
 
 namespace ZombieRun.Entities.Characters
 {
-    using Utils;
-
     public class CharacterMovement : CharacterBehaviorBase
     {
-        [Range(1f, 3f)]
-        [SerializeField] private float _stopDistance = 1f;
+        [SerializeField] private CharacterController _controller = null;
+        [Range(1f, 2f)]
+        [SerializeField] private float _stopDistance = 1.25f;
 
         private MovementSettings _settings;
         private float _turnSmoothVelocity;
@@ -17,13 +16,6 @@ namespace ZombieRun.Entities.Characters
 
         private void Update()
         {
-            if (_target == null)
-                return;
-
-            Debug.Log(transform.GetDistanceTo(_target));
-            if (transform.GetDistanceTo(_target) < _stopDistance)
-                return;
-
             Move();
         }
 
@@ -50,8 +42,15 @@ namespace ZombieRun.Entities.Characters
 
         private void Move()
         {
-            var step = _settings.moveSpeed.value * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, _target.position, step);
+            if (_target == null)
+                return;
+
+            var offset = _target.position - transform.position;
+            if (offset.magnitude < _stopDistance)
+                return;
+
+            var motion = offset.normalized * _settings.moveSpeed.value * Time.deltaTime;
+            _controller.Move(motion);
         }
 
         private void OnTargetChanged(Transform target)
